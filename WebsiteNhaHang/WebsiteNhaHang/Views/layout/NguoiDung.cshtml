@@ -13,12 +13,12 @@
 
     <!-- Bootstrap core CSS -->
 
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="~/Content/css/business-casual.css" rel="stylesheet">
 
@@ -43,14 +43,10 @@
                     <a class="nav-link text-uppercase text-expanded" href="~/TrangChu/Index"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/GioiThieu/GioiThieu">Giới Thiệu</a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/GioiThieu/KhongGianNhaHang">Giới Thiệu</a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <a class="nav-link text-uppercase text-expanded" href="~/ThucDon/ThucDon">Thực Đơn</a>
-                </li>
-                <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/DatTiec/DatTiec">Đặt Tiệc</a>
-
                 </li>
                 <li class="nav-item px-lg-3">
                     <a class="nav-link text-uppercase text-expanded" href="~/Combo/GoiCombo">Gói Combo <span class="badge badge-secondary">4</span></a>
@@ -58,7 +54,7 @@
                 </li>
 
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/KhuyenMai/KhuyenMai">Khuyến Mãi <span class="badge badge-secondary">4</span></a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/KhuyenMai/KhuyenMai">Khuyến Mãi - Sự Kiện <span class="badge badge-secondary">4</span></a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <a class="nav-link text-uppercase text-expanded" href="~/TuyenDung/TuyenDung">Tuyển Dụng <span class="badge badge-secondary">4</span></a>
@@ -70,8 +66,8 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg-10" href="#">Đăng Nhập</a>
-                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif" data-toggle="modal" data-target=".bd-example-modal-lg-0" href="#">Đăng Nhập</a>
+                            <a class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif" href="#">Đăng Xuất</a>
 
                         </div>
                     </div>
@@ -85,7 +81,7 @@
 
         <div class="row">
             <!--Đăng Nhập-->
-            <div class="modal fade bd-example-modal-lg-10 float-right" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg-0 float-right" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" style="width: 300px">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -123,9 +119,9 @@
             <!-- Giỏ hàng -->
             <div style="position: fixed; top: 10%; right: 10px; z-index: 2" id="GioHang">
 
-                <img src="~/Content/img/icon_256.png" data-toggle="modal" data-target=".bd-example-modal-lg-9" style="max-width: 40px; max-height: 40px" /> <span class="badge badge-secondary">4</span>
+                <img src="~/Content/img/icon_256.png" data-toggle="modal" data-target=".bd-example-modal-lg-999" style="max-width: 40px; max-height: 40px" /> <span class="badge badge-secondary">4</span>
             </div>
-            <div class="modal fade bd-example-modal-lg-9" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg-999" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -259,22 +255,17 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-        <footer class="bg-faded text-center py-5">
+        <footer class="bg-faded text-center py-2">
             <div class="container">
                 <p class="m-0">Copyright &copy; Thực tập nhóm 2</p>
             </div>
         </footer>
-
         <!-- Bootstrap core JavaScript -->
         <script src="~/Content/vendor/jquery/jquery.min.js"></script>
         <script src="~/Content/vendor/popper/popper.min.js"></script>
         <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
-
     </div>
 
 </body>

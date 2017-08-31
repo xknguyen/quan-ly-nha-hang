@@ -1,4 +1,9 @@
-﻿
+﻿@using WebsiteNhaHang.Models
+@using PagedList.Mvc
+
+
+@model PagedList.IPagedList<GoiCombo>
+
 @{
     ViewBag.Title = "Công";
     Layout = "~/Views/layout/NguoiDung.cshtml";
@@ -12,268 +17,77 @@
 <div id="ThucDon" class="bg-faded p-4 my-4">
     <hr class="divider">
     <h2 class="text-center text-lg text-uppercase my-0">
-        Gói <strong>combo </strong>
+        Goi <strong>Combo</strong>
     </h2>
     <hr class="divider">
     <div class="row">
-        <div class="media col-md-4">
-            <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090;">
-                <img class="card-img-top" src="~/Content/img/ga.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-info">Đặt Combo</a>
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Xem Chi Tiết</button>
+        @foreach (var item in Model)
+        {
+            int i = 0;
+            <div class="media col-md-4 mb-4">
+                <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090">
+                    <img class="card-img-top" src="@Url.Content("~/Content/img/MonAn/" + item.HinhAnh)" style="max-height: 225px; min-height: 225px" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">@item.TenComBo </h4>
+                        <p class="card-text">
+                            Giá món ăn: <b style="color: #FF4000">@string.Format("{0:0,0}", @item.Gia)</b> VND
+                        </p>
+                        <a href="#" class="btn btn-info">Đặt món</a>
+                        <button style="font-family: 'Roboto Condensed', sans-serif" class="btn btn-info float-right mr-4" data-toggle="modal" data-target=".bd-example-modal-lg-@item.MaCombo">Xem Chi Tiết</button>
 
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Gà Luộc 1</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body pre-scrollable" style="min-height: 450px">
-                                    <img src="~/Content/img/ga.jpg" class="img-thumbnail" alt="Responsive image">
-                                    <p>
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem sau</button>
-                                    <button type="button" class="btn btn-primary">Đặt món</button>
+                        <div class="modal fade bd-example-modal-lg-@item.MaCombo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">@item.MaCombo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body pre-scrollable text-center" style="min-height: 450px">
+                                        <hr />
+                                        <h3 class="modal-title">Danh sách các món trong Combo</h3>
+                                        <table class="table">
+                                            @foreach (var monAn in item.MonAns)
+                                            {
+                                                i++;
+                                                <tr>
+
+                                                    <th>@i</th>
+                                                    <td><img class="rounded float-left" src="@Url.Content("~/Content/img/MonAn/" + monAn.HinhAnh)" style="max-width: 120px"></td>
+                                                    <th>@monAn.TenMon</th>
+                                                </tr>
+                                            }
+                                        </table>
+                                        <hr />
+                                        <p class="text-left">Số lần được đặt: @item.SoLanDat</p>  
+                                    </div>
+                                    <div class="card-footer text-muted" style="max-height: 60px">
+                                        <div class="float-left ml-3">
+                                            <h5>
+                                                Giá món ăn: <b style="color: #FF4000">@string.Format("{0:0,0}", @item.Gia) </b> VND
+                                            </h5>
+                                        </div>
+                                        <div class="float-right">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem sau</button>
+                                            <button type="button" class="btn btn-primary">Đặt Combo</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-        <div class="media col-md-4">
-            <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090;">
-                <img class="card-img-top" src="~/Content/img/ga.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-info">Đặt Combo</a>
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Xem Chi Tiết</button>
-
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Gà Luộc 1</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body pre-scrollable" style="min-height: 450px">
-                                    <img src="~/Content/img/ga.jpg" class="img-thumbnail" alt="Responsive image">
-                                    <p>
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem sau</button>
-                                    <button type="button" class="btn btn-primary">Đặt món</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="media col-md-4">
-            <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090;">
-                <img class="card-img-top" src="~/Content/img/ga.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-info">Đặt Combo</a>
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Xem Chi Tiết</button>
-
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Gà Luộc 1</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body pre-scrollable" style="min-height: 450px">
-                                    <img src="~/Content/img/ga.jpg" class="img-thumbnail" alt="Responsive image">
-                                    <p>
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem sau</button>
-                                    <button type="button" class="btn btn-primary">Đặt món</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        }
 
     </div>
-    <div class="row mt-3 mb-3">
-        <div class="media col-md-4">
-            <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090;">
-                <img class="card-img-top" src="~/Content/img/ga.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-info">Đặt Combo</a>
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Xem Chi Tiết</button>
-
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Gà Luộc 1</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body pre-scrollable" style="min-height: 450px">
-                                    <img src="~/Content/img/ga.jpg" class="img-thumbnail" alt="Responsive image">
-                                    <p>
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem sau</button>
-                                    <button type="button" class="btn btn-primary">Đặt món</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+    <div class="ml-5">
+        <div class="ml-3 pt-3">
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
         </div>
-        <div class="media col-md-4">
-            <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090;">
-                <img class="card-img-top" src="~/Content/img/ga.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-info">Đặt Combo</a>
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Xem Chi Tiết</button>
-
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Gà Luộc 1</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body pre-scrollable" style="min-height: 450px">
-                                    <img src="~/Content/img/ga.jpg" class="img-thumbnail" alt="Responsive image">
-                                    <p>
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem sau</button>
-                                    <button type="button" class="btn btn-primary">Đặt món</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="media col-md-4">
-            <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090;">
-                <img class="card-img-top" src="~/Content/img/ga.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-info">Đặt Combo</a>
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Xem Chi Tiết</button>
-
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Gà Luộc 1</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body pre-scrollable" style="min-height: 450px">
-                                    <img src="~/Content/img/ga.jpg" class="img-thumbnail" alt="Responsive image">
-                                    <p>
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem sau</button>
-                                    <button type="button" class="btn btn-primary">Đặt món</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("ThucDon", new { page }))
         </div>
     </div>
-    <nav aria-label="Page navigation example" class="pl-5">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
 </div>
-
