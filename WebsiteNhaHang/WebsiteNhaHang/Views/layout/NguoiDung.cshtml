@@ -28,9 +28,7 @@
 
 <body>
 
-    <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Ganeya Nhật Bản</div>
-    <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">5A Đào Duy Từ, Phường 4, Tp. Đà Lạt | 123.456.7890</div>
-
+    @Html.Action("ThongTinNhaHang1", "GioiThieu")
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
         <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ganeya Nhật Bản</a>
@@ -49,7 +47,7 @@
                     <a class="nav-link text-uppercase text-expanded" href="~/ThucDon/ThucDon">Thực Đơn</a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/Combo/GoiCombo">Gói Combo <span class="badge badge-secondary">4</span></a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/Combo/GoiCombo">Gói Combo <span class="badge badge-secondary">@Html.Action("DemCombo","Combo")</span></a>
 
                 </li>
 
@@ -233,28 +231,7 @@
                 </div>
             </div>
             <div class="bg-faded p-4 my-4 ">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card mt-2" style="width: auto;">
-                            <h4 class="card-header text-center text-secondary">Địa chỉ nhà hàng</h4>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.5542775457907!2d108.43174131481152!3d11.936076291541085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3171133183e34293%3A0xd50d1d446350749c!2zR2FuZXlhIFJlc3R1YXJhbnQgLSBOaMOgIEjDoG5nIE5o4bqtdCBC4bqjbg!5e0!3m2!1svi!2sin!4v1503227601502" min-width="300" min-height="200" frameborder="0" style="border: 0;"></iframe>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card mt-2" style="width: auto;">
-                            <h3 class=" card-header text-center text-secondary">Thông tin liên hệ</h3>
-                            <p class="card-text ml-2">
-                                Địa chỉ: 5A Đào Duy Từ, Phường 4, Tp. Đà Lạt
-                            </p>
-                            <p class="card-text ml-2">
-                                Điện thoại: 0263 354 7868- 0167 394 0628
-                            </p>
-                            <p class="card-text ml-2">
-                                Giờ mở cửa: Ganeya Nhật Bản mở cửa 7 ngày trong tuần, buổi trưa từ 11:30AM - 2PM, buổi tối từ 5PM - 11PM.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @Html.Action("ThongTinNhaHang","GioiThieu")
             </div>
         </div>
         <footer class="bg-faded text-center py-2">

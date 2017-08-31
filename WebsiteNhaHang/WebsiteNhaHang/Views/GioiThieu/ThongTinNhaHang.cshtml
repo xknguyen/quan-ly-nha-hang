@@ -1,0 +1,28 @@
+﻿@using WebsiteNhaHang.Models
+@model List<ThongTinNhaHang>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card mt-2" style="width: auto;">
+                <h4 class="card-header text-center text-secondary">Địa chỉ nhà hàng</h4>
+                <iframe src="@item.URLMap" min-width="300" min-height="200" frameborder="0" style="border: 0;"></iframe>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card mt-2" style="width: auto;">
+                <h3 class=" card-header text-center text-secondary">Thông tin liên hệ</h3>
+                <p class="card-text ml-2">
+                    Địa chỉ: @item.DiaChi
+                </p>
+                <p class="card-text ml-2">
+                    Điện thoại: @item.SoDienThoai1 - @item.SoDienThoai2
+                </p>
+                <p class="card-text ml-2">
+                    Giờ mở cửa: @item.ThongTinKhac.
+                </p>
+            </div>
+        </div>
+    </div>
+}

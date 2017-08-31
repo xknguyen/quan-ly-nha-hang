@@ -8,14 +8,18 @@ namespace WebsiteNhaHang.Controllers
 {
     public class GioiThieuController : Controller
     {
-        NhaHangEntities db=new NhaHangEntities();
+        NhaHangEntities1 db=new NhaHangEntities1();
         // GET: GioiThieu
         public ActionResult KhongGianNhaHang()
-        {
-            return View();
+        {   
+            return View(db.LoaiKhongGianNhaHangs.OrderBy(n=>n.TenLoai).ToList());
         }
 
         public ActionResult ThongTinNhaHang()
+        {            
+            return View(db.ThongTinNhaHangs.ToList());
+        }
+        public ActionResult ThongTinNhaHang1()
         {
             return View(db.ThongTinNhaHangs.ToList());
         }

@@ -21,9 +21,10 @@
     </h2>
     <hr class="divider">
     <div class="row">
+        
         @foreach (var item in Model)
         {
-            int i = 0;
+            int i = 0;            
             <div class="media col-md-4 mb-4">
                 <div class="card" style="width: 20rem; box-shadow: 5px 3px 5px #708090">
                     <img class="card-img-top" src="@Url.Content("~/Content/img/MonAn/" + item.HinhAnh)" style="max-height: 225px; min-height: 225px" alt="Card image cap">
@@ -45,7 +46,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body pre-scrollable text-center" style="min-height: 450px">
-                                        <hr />
+                                        <hr/>
                                         <h3 class="modal-title">Danh sách các món trong Combo</h3>
                                         <table class="table">
                                             @foreach (var monAn in item.MonAns)
@@ -59,8 +60,8 @@
                                                 </tr>
                                             }
                                         </table>
-                                        <hr />
-                                        <p class="text-left">Số lần được đặt: @item.SoLanDat</p>  
+                                        <hr/>
+                                        <p class="text-left">Số lần được đặt: @item.SoLanDat</p>
                                     </div>
                                     <div class="card-footer text-muted" style="max-height: 60px">
                                         <div class="float-left ml-3">

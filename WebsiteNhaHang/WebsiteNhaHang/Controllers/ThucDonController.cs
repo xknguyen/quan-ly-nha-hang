@@ -11,7 +11,7 @@ namespace WebsiteNhaHang.Controllers
 {
     public class ThucDonController : Controller
     {
-        NhaHangEntities db=new NhaHangEntities();
+        NhaHangEntities1 db=new NhaHangEntities1();
         // GET: ThucDon
         public ActionResult ThucDon(int? page)
         {
