@@ -11,7 +11,7 @@ namespace WebsiteNhaHang.Controllers
 {
     public class ComboController : Controller
     {
-        NhaHangEntities1 db=new NhaHangEntities1();
+        NhaHangEntities db=new NhaHangEntities();
         // GET: Combo
         public ActionResult GoiCombo(int ?page)
         {
@@ -29,7 +29,7 @@ namespace WebsiteNhaHang.Controllers
             ViewBag.DemCombo= db.GoiComboes.Count();
             return View();
         }
-
+        
 
     }
 }

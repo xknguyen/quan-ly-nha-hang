@@ -14,9 +14,10 @@ namespace WebsiteNhaHang.Models
     
     public partial class BinhLuan
     {
-        public int MaBinhLuan { get; set; }
-        public int NguoiBinhLuan { get; set; }
+        public int MaCuaBinhLuan { get; set; }
+        public int MaTaiKhoan { get; set; }
         public string BinhLuan1 { get; set; }
+        public Nullable<System.DateTime> NgayDang { get; set; }
     
         public virtual TaiKhoan TaiKhoan { get; set; }
     }

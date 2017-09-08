@@ -11,7 +11,7 @@ namespace WebsiteNhaHang.Controllers
 {
     public class ThucDonController : Controller
     {
-        NhaHangEntities1 db=new NhaHangEntities1();
+        NhaHangEntities db=new NhaHangEntities();
         // GET: ThucDon
         public ActionResult ThucDon(int? page)
         {
@@ -22,6 +22,25 @@ namespace WebsiteNhaHang.Controllers
         public PartialViewResult MonDuocDatNhieu()
         {
             return PartialView(db.MonAns.Take(3).OrderBy(n => n.SoLuotDat).ToList());
+        }
+        public PartialViewResult LoaiMonAn()
+        {
+            return PartialView(db.LoaiMons.ToList());
+        }
+        public ViewResult MonAnTheoLoai(int maLoai=0)
+        {
+            LoaiMon lm = db.LoaiMons.SingleOrDefault(n => n.MaLoai == maLoai);
+            if(lm==null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            List<MonAn> lstMonAn = db.MonAns.Where(n => n.LoaiMon == maLoai).OrderBy(n=>n.TenMon).ToList();
+            if(lstMonAn.Count==0)
+            {
+                ViewBag.MonAn = "Không có món ăn nào trong loại này!!";
+            }
+            return View(lstMonAn);
         }
     }
 }

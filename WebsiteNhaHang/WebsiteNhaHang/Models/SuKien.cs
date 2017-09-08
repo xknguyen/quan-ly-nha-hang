@@ -19,6 +19,7 @@ namespace WebsiteNhaHang.Models
         public Nullable<System.DateTime> NgayBatDau { get; set; }
         public Nullable<System.DateTime> NgayKetThuc { get; set; }
         public Nullable<System.DateTime> NgayDang { get; set; }
+        public string HinhAnh { get; set; }
         public string ChiTiet { get; set; }
         public Nullable<int> NguoiDang { get; set; }
     

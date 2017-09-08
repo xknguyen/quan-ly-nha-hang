@@ -18,11 +18,11 @@ namespace WebsiteNhaHang.Models
         public string TenKhongGian { get; set; }
         public string HinhAnh { get; set; }
         public string GioiThieu { get; set; }
+        public Nullable<int> LoaiKhongGian { get; set; }
         public Nullable<int> NguoiDang { get; set; }
         public Nullable<System.DateTime> NgayDang { get; set; }
-        public Nullable<int> LoaiKhongGian { get; set; }
     
-        public virtual TaiKhoan TaiKhoan { get; set; }
         public virtual LoaiKhongGianNhaHang LoaiKhongGianNhaHang { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

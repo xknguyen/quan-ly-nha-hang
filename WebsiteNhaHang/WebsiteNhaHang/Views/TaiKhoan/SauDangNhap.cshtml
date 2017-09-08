@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "SauDangNhap";
+}
+<h2> Congratulate</h2>
+@if (Session["EmailDangNhap"]!=null)
+{
+    <text>
+        welcom @Session["EmailDangNhap"].ToString()
+    </text>
+}

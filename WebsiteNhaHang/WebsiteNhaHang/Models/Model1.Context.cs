@@ -13,10 +13,10 @@ namespace WebsiteNhaHang.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NhaHangEntities1 : DbContext
+    public partial class NhaHangEntities : DbContext
     {
-        public NhaHangEntities1()
-            : base("name=NhaHangEntities1")
+        public NhaHangEntities()
+            : base("name=NhaHangEntities")
         {
         }
     
@@ -26,22 +26,21 @@ namespace WebsiteNhaHang.Models
         }
     
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
-        public virtual DbSet<ChiTietTaiKhoan> ChiTietTaiKhoans { get; set; }
+        public virtual DbSet<DanhSachDatCombo> DanhSachDatComboes { get; set; }
+        public virtual DbSet<DanhSachMonDatBan> DanhSachMonDatBans { get; set; }
         public virtual DbSet<DatBan> DatBans { get; set; }
-        public virtual DbSet<GiamGia> GiamGias { get; set; }
         public virtual DbSet<GoiCombo> GoiComboes { get; set; }
         public virtual DbSet<KhongGianNhaHang> KhongGianNhaHangs { get; set; }
         public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
         public virtual DbSet<KieuDatBan> KieuDatBans { get; set; }
+        public virtual DbSet<LoaiKhongGianNhaHang> LoaiKhongGianNhaHangs { get; set; }
         public virtual DbSet<LoaiMon> LoaiMons { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
         public virtual DbSet<MonAn> MonAns { get; set; }
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
         public virtual DbSet<SuKien> SuKiens { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThongTinNhaHang> ThongTinNhaHangs { get; set; }
         public virtual DbSet<TuyenDung> TuyenDungs { get; set; }
-        public virtual DbSet<LoaiKhongGianNhaHang> LoaiKhongGianNhaHangs { get; set; }
     }
 }

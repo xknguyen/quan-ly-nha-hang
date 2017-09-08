@@ -21,7 +21,22 @@
     <link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="~/Content/css/business-casual.css" rel="stylesheet">
-
+    <style>
+        #DangXuat {
+            display: none;
+        }
+    </style>
+    @if (Session["EmailDangNhap"] != null)
+    {
+        <style>
+            #DangNhap {
+                display: none;
+            }
+            #DangXuat {
+                display: block;
+            }
+        </style>
+    }
 
 
 </head>
@@ -52,10 +67,10 @@
                 </li>
 
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/KhuyenMai/KhuyenMai">Khuyến Mãi - Sự Kiện <span class="badge badge-secondary">4</span></a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/KhuyenMaiSuKien/KhuyenMai">Khuyến Mãi - Sự Kiện <span class="badge badge-secondary">@Html.Action("DemSuKien_KhuyenMai", "KhuyenMaiSuKien")</span></a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/TuyenDung/TuyenDung">Tuyển Dụng <span class="badge badge-secondary">4</span></a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/TuyenDung/TuyenDung">Tuyển Dụng <span class="badge badge-secondary">@Html.Action("DemTuyenDung", "TuyenDung")</span></a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <div class="dropdown show">
@@ -64,9 +79,15 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif" data-toggle="modal" data-target=".bd-example-modal-lg-0" href="#">Đăng Nhập</a>
-                            <a class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif" href="#">Đăng Xuất</a>
-
+                            <div id="DangNhap">
+                                <a class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif" href="@Url.Action("DangNhap", "TaiKhoan")">Đăng Nhập</a>
+                                <a class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif" href="@Url.Action("DangKy", "TaiKhoan")">Đăng Ký Thành Viên</a>
+                            </div>
+                            <div id="DangXuat">
+                                <p class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif">@Session["EmailDangNhap"]</p>
+                                <a class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif" href="@Url.Action("TaiKhoanChiTiet","TaiKhoan")">Quản lý tài khoản</a>
+                                <p class="dropdown-item" style="font-family: 'Roboto Condensed', sans-serif">@Html.ActionLink("Đăng Xuất","DangXuat","TaiKhoan")</p>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -79,7 +100,7 @@
 
         <div class="row">
             <!--Đăng Nhập-->
-            <div class="modal fade bd-example-modal-lg-0 float-right" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            @*<div class="modal fade bd-example-modal-lg-0 float-right" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" style="width: 300px">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -89,31 +110,27 @@
                             </button>
                         </div>
                         <div class="modal-body" style="max-width: 300px">
-                            <form>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập email của bạn">
-                                    <small id="emailHelp" class="form-text text-muted">Chúng tôi sẽ không chia sẻ email của bạn cho bất kì a.</small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Mật Khẩu</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder=" Mật khẩu của bạn!!">
-                                </div>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
-                                        Nhớ tài khoản
-                                    </label>
-                                    <p><a href="#">Đăng ký nếu bạn chưa có tài khoản.</a></p>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Đăng Nhập</button>
-                            </form>
+                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" name="txtEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập email của bạn">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Mật Khẩu</label>
+                                <input type="password" name="passMatKhau" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu của bạn!!">
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input">
+                                    Nhớ tài khoản
+                                </label>
+                                <p><a href="#">Đăng ký nếu bạn chưa có tài khoản.</a></p>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
                         </div>
-
                     </div>
                 </div>
-
-            </div>
+            </div>*@
             <!-- Giỏ hàng -->
             <div style="position: fixed; top: 10%; right: 10px; z-index: 2" id="GioHang">
 
@@ -142,7 +159,7 @@
         </div>
 
 
-        <div class="bg-faded p-4 my-4">
+        <div class="bg-faded p-4 my-4" id="nivoSlider">
             <!-- Image Carousel -->
 
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -150,31 +167,22 @@
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <a href="#"><img class="d-block img-fluid w-100" src="~/Content/img/slide-1.jpg" alt=""></a>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3 class="text-shadow">First Slide</h3>
-                            <p>This is the caption for the first slide.</p>
+                        <div style="max-height:32rem; height: auto">
+                            <img class="d-block img-fluid w-100" src="~/Content/img/slide-1.jpg" style="height: 80%" alt="">
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#"><img class="d-block img-fluid w-100" src="~/Content/img/slide-2.jpg" alt=""></a>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3 class="text-shadow">Second Slide</h3>
-                            <p class="text-shadow">This is the caption for the second slide.</p>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="text-shadow">First Slide</h3>
+                                <p>This is the caption for the first slide.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#"><img class="d-block img-fluid w-100" src="~/Content/img/slide-3.jpg" alt=""></a>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3 class="text-shadow">Third Slide</h3>
-                            <p class="text-shadow">This is the caption for the third slide.</p>
-                        </div>
-                    </div>
+                    @Html.Action("AnhGioiThieu","KhuyenMaiSuKien")
+                    @Html.Action("AnhSuKien", "KhuyenMaiSuKien")
                 </div>
-
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -199,40 +207,13 @@
 
 
         <div>
-            <div class="bg-faded p-4 my-4 ">
-                <hr class="divider">
-                <h2 class="text-center text-lg text-uppercase my-0">
-                    Bình <strong>Luận</strong>
-                </h2>
-                <hr class="divider">
-                <!-- /.container -->
-                <div class="form-group row">
-                    <label for="exampleFormControlTextarea1">Hãy cho chúng tôi biết ý kiến của bạn: </label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <button class="btn btn-outline-secondary float-right mt-2" type="submit">Đăng bình luận</button>
-                </div>
-                <div>
-                    <hr />
-                    <label for="exampleFormControlTextarea1"><strong>Danh sách bình luận: </strong></label>
-                </div>
-                <div class="media mb-3">
-                    <img class="d-flex mr-3" src="~/Content/img/hinh-the-dep.jpg" alt="Generic placeholder image" style="max-width: 80px; max-height: 100px">
-                    <div class="media-body">
-                        <h5 class="mt-0"><strong>Nguyễn Công Anh Phú</strong></h5>
-                        3 năm cực khổ, thành quả sau quá trình dùng liệu pháp tiêm hormoon nữ
-                    </div>
-                </div>
-                <div class="media">
-                    <img class="d-flex mr-3" src="~/Content/img/hinh-the-dep.jpg" alt="Generic placeholder image" style="max-width: 80px; max-height: 100px">
-                    <div class="media-body">
-                        <h5 class="mt-0"><strong>Tên</strong></h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
+            <div class="bg-faded p-4 my-4 " id="ThongTinNhaHang">
+                @Html.Action("ThongTinNhaHang", "GioiThieu")
             </div>
-            <div class="bg-faded p-4 my-4 ">
-                @Html.Action("ThongTinNhaHang","GioiThieu")
+            <div class="bg-faded p-4 my-4 " id="BinhLuan">
+                @Html.Action("DangBinhLuan","BinhLuan")        
             </div>
+
         </div>
         <footer class="bg-faded text-center py-2">
             <div class="container">
@@ -243,6 +224,15 @@
         <script src="~/Content/vendor/jquery/jquery.min.js"></script>
         <script src="~/Content/vendor/popper/popper.min.js"></script>
         <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script>
+            function heartBeat() {
+                $.get("TuyenDung/DemTuyenDung", function (data) { });
+            }
+
+            $(function () {
+                setInterval("heartBeat()", 1000 * 100); // 100s gửi request một lần
+            });
+        </script>
     </div>
 
 </body>

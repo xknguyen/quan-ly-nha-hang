@@ -17,8 +17,8 @@ namespace WebsiteNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MonAn()
         {
-            this.GiamGias = new HashSet<GiamGia>();
-            this.DatBans = new HashSet<DatBan>();
+            this.DanhSachMonDatBans = new HashSet<DanhSachMonDatBan>();
+            this.KhuyenMais = new HashSet<KhuyenMai>();
             this.GoiComboes = new HashSet<GoiCombo>();
         }
     
@@ -28,14 +28,13 @@ namespace WebsiteNhaHang.Models
         public string HinhAnh { get; set; }
         public Nullable<double> Gia { get; set; }
         public string ChiTiet { get; set; }
-        public Nullable<int> GiamGia { get; set; }
         public Nullable<int> SoLuotDat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GiamGia> GiamGias { get; set; }
+        public virtual ICollection<DanhSachMonDatBan> DanhSachMonDatBans { get; set; }
         public virtual LoaiMon LoaiMon1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatBan> DatBans { get; set; }
+        public virtual ICollection<KhuyenMai> KhuyenMais { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoiCombo> GoiComboes { get; set; }
     }

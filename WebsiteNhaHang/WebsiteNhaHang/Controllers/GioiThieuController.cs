@@ -8,13 +8,21 @@ namespace WebsiteNhaHang.Controllers
 {
     public class GioiThieuController : Controller
     {
-        NhaHangEntities1 db=new NhaHangEntities1();
+        NhaHangEntities db=new NhaHangEntities();
         // GET: GioiThieu
         public ActionResult KhongGianNhaHang()
         {   
             return View(db.LoaiKhongGianNhaHangs.OrderBy(n=>n.TenLoai).ToList());
         }
 
+        public PartialViewResult AnhGioiThieu(int lanHien)
+        {
+            return PartialView(db.KhongGianNhaHangs.Take(lanHien).OrderBy(n=>n.NgayDang).ToList());
+        }
+        public PartialViewResult AnhGioiThieuSuKien(int lanHien)
+        {
+            return PartialView(db.KhongGianNhaHangs.Take(lanHien).OrderByDescending(n => n.NgayDang).ToList());
+        }
         public ActionResult ThongTinNhaHang()
         {            
             return View(db.ThongTinNhaHangs.ToList());
@@ -22,6 +30,10 @@ namespace WebsiteNhaHang.Controllers
         public ActionResult ThongTinNhaHang1()
         {
             return View(db.ThongTinNhaHangs.ToList());
+        }
+        public PartialViewResult TrangDangNhap()
+        {
+            return PartialView(db.ThongTinNhaHangs.ToList());
         }
     }
 }

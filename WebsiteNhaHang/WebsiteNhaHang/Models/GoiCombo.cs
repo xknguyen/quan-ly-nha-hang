@@ -17,7 +17,7 @@ namespace WebsiteNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GoiCombo()
         {
-            this.DatBans = new HashSet<DatBan>();
+            this.DanhSachDatComboes = new HashSet<DanhSachDatCombo>();
             this.MonAns = new HashSet<MonAn>();
         }
     
@@ -29,7 +29,7 @@ namespace WebsiteNhaHang.Models
         public Nullable<int> SoLanDat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatBan> DatBans { get; set; }
+        public virtual ICollection<DanhSachDatCombo> DanhSachDatComboes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MonAn> MonAns { get; set; }
     }

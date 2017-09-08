@@ -1,6 +1,0 @@
-namespace WebsiteNhaHang.Areas.HelpPage.ModelDescriptions
-{
-    public class SimpleTypeModelDescription : ModelDescription
-    {
-    }
-}
