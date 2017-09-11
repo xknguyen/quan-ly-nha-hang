@@ -1,0 +1,200 @@
+﻿@model TrangQuanLy.Models.DatBan
+@{
+    Layout = null;
+}
+@*@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Share/Layout/Admins.cshtml";
+}*@
+
+
+  <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDatBan)
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.NgayThucHien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayThucHien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoNguoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoNguoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TongTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KieuDatBan1.TenKieuDat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KieuDatBan1.TenKieuDat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaiKhoan.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaiKhoan.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>*@
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Xác nhận</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Bạn có chắc muốn xóa cuốn sách này?</h3>
+                <div>
+                <hr />
+
+				@using (Html.BeginForm())
+                {
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.NgayDatBan, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="controls ">
+                                <input type="datetime-local" id="datepicker" class="input-small hasDatepicker" data-data-format="dd-mm-yyyy" name="NgayDatBan">
+                                @Html.ValidationMessageFor(model => model.NgayDatBan, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.MaKhachHang, "MaKhachHang", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.DropDownList("MaKhachHang", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MaKhachHang, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.NgayThucHien, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @*@Html.TextBoxFor(model => model.NgayThucHien, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="datetime-local" id="datepicker" class="input-small hasDatepicker" data-data-format="dd-mm-yyyy" name="NgayThucHien">
+
+                                @Html.ValidationMessageFor(model => model.NgayThucHien, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.KieuDatBan, "KieuDatBan", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.DropDownList("KieuDatBan", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.KieuDatBan, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.SoNguoi, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.EditorFor(model => model.SoNguoi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SoNguoi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.TongTien, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.EditorFor(model => model.TongTien, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TongTien, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-actions no-color">
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <i class="icon-ok bigger-110"></i>
+                                <input type="submit" value="Đặt Bàn" class="btn btn-default" />
+                            </div>
+
+                            <div>
+                                <i class="icon-undo bigger-110"></i>
+
+                                @Html.ActionLink("Quay Lại", "Index")
+                            </div><!-- /.row-fluid -->
+
+                        </div>
+                    </div>
+
+                                                 <!-- /.span -->
+                }
+                </div>
+            </div><!-- /.modal-body -->
+            <div class="modal-footer">
+            @using (Html.BeginForm("Delete", "Books", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-actions no-color text-center">
+                    <input type="submit" value="Xóa" class="btn btn-danger" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                </div>
+            }
+            </div><!-- /.modal-footer -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@section Scripts
+{
+    <script>
+        $('.delete').click(function(e) {
+            var a_href = $(this).attr('href'); /* Lấy giá trị của thuộc tính href */
+            e.preventDefault(); /* Không thực hiện action mặc định */
+            $.ajax({
+/* Gửi request lên server */
+                url: a_href, /* Nội dung trong Delete.cshtml cụ thể là deleteModal div được server trả về */
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function(data) { /* Sau khi nhận được giá */
+                    $('.body-content').prepend(data); /* body-content div (định nghĩa trong _Layout.cshtml) sẽ thêm deleteModal div vào dưới cùng */
+                    $('#deleteModal').modal('show'); /* Hiển thị deleteModal div dưới kiểu modal */
+                }
+            });
+        });
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#myInput').focus();
+        });
+        </script > 
+    
+}
