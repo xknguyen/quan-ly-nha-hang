@@ -1,0 +1,43 @@
+﻿@model TrangQuanLyNhaHang.Models.DanhSachMonDatBan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DanhSachMonDatBan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatBan.MaDatBan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatBan.MaDatBan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonAn.TenMon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonAn.TenMon)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

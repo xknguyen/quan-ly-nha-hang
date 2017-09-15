@@ -1,0 +1,149 @@
+﻿@model TrangQuanLyNhaHang.Models.MonAn
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
+}
+
+
+
+<div class="form-horizontal">
+    <div class="page-content">
+        <div class="page-header position-relative">
+            <h1>
+                Sửa Thông Tin Món Ăn
+                @*<small>
+                        <i class="icon-double-angle-right"></i>
+                        Common form elements and layouts
+                    </small>*@
+            </h1>
+        </div><!-- /.page-header -->
+
+        <div class="row-fluid">
+            <div class="span12 form-horizontal">
+                @using (Html.BeginForm())
+                {
+
+                    @Html.AntiForgeryToken()
+                    <div class="form-actions">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.MaMon)
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.TenMon, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.EditorFor(model => model.TenMon, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenMon, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.LoaiMon, "LoaiMon", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.DropDownList("LoaiMon", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LoaiMon, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.ChiTiet, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.EditorFor(model => model.ChiTiet, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ChiTiet, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.SoLuotDat, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            <div class="controls">
+                                @Html.EditorFor(model => model.SoLuotDat, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SoLuotDat, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-actions no-color">
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <i class="icon-ok bigger-110"></i>
+                                <input type="submit" value="Lưu Lại" class="btn btn-default" />
+                            </div>
+
+                            <div>
+                                <i class="icon-undo bigger-110"></i>
+                                @Html.ActionLink("Quay Lại", "Index")
+                            </div><!-- /.row-fluid -->
+
+                        </div>
+                    </div>
+
+                                             <!-- /.span -->
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/js/jquery.dataTables.bootstrap.js"></script>
+
+<!-- ace scripts -->
+
+<script src="~/assets/js/ace-elements.min.js"></script>
+<script src="~/assets/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
+
+<script type="text/javascript">
+        window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<script src="assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+<script src="assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+
+<!-- ace scripts -->
+
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->

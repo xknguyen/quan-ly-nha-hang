@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TrangQuanLyNhaHang.Models.GoiCombo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenComBo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiThieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLanDat)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenComBo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HinhAnh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiThieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLanDat)
+            </td>
+            <td>
+                
+                @*<button class="btn btn-link " data-toggle="modal" data-target=".bd-example-modal-lg"><i class="icon-pencil bigger-130 green">@Html.ActionLink("Delete", "Delete", new { id = item.MaCombo })</i> </button>*@
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaCombo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaCombo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaCombo })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@*@section scripts{
+    <script>
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#myInput').focus(
+                $('#exampleModal').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+                    var recipient = button.data('whatever') // Extract info from data-* attributes
+                    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    var modal = $(this)
+                    modal.find('.modal-title').text('New message to ' + recipient),
+                        modal.find('.modal-body input').val(recipient);
+                })
+            );
+        });
+    </script>
+}*@  
