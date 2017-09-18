@@ -18,8 +18,8 @@ namespace WebsiteNhaHang.Models
         public MonAn()
         {
             this.DanhSachMonDatBans = new HashSet<DanhSachMonDatBan>();
-            this.KhuyenMais = new HashSet<KhuyenMai>();
             this.GoiComboes = new HashSet<GoiCombo>();
+            this.KhuyenMais = new HashSet<KhuyenMai>();
         }
     
         public int MaMon { get; set; }
@@ -34,8 +34,8 @@ namespace WebsiteNhaHang.Models
         public virtual ICollection<DanhSachMonDatBan> DanhSachMonDatBans { get; set; }
         public virtual LoaiMon LoaiMon1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KhuyenMai> KhuyenMais { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoiCombo> GoiComboes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KhuyenMai> KhuyenMais { get; set; }
     }
 }

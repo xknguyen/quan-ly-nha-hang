@@ -17,13 +17,16 @@ namespace WebsiteNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KieuDatBan()
         {
-            this.DatBans = new HashSet<DatBan>();
+            this.DanhSachDatComboes = new HashSet<DanhSachDatCombo>();
+            this.DanhSachMonDatBans = new HashSet<DanhSachMonDatBan>();
         }
     
         public int MaKieuDatBan { get; set; }
         public string TenKieuDat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatBan> DatBans { get; set; }
+        public virtual ICollection<DanhSachDatCombo> DanhSachDatComboes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DanhSachMonDatBan> DanhSachMonDatBans { get; set; }
     }
 }

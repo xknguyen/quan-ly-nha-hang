@@ -30,9 +30,9 @@ namespace WebsiteNhaHang.Models
         public virtual DbSet<DanhSachMonDatBan> DanhSachMonDatBans { get; set; }
         public virtual DbSet<DatBan> DatBans { get; set; }
         public virtual DbSet<GoiCombo> GoiComboes { get; set; }
+        public virtual DbSet<KieuDatBan> KieuDatBans { get; set; }
         public virtual DbSet<KhongGianNhaHang> KhongGianNhaHangs { get; set; }
         public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
-        public virtual DbSet<KieuDatBan> KieuDatBans { get; set; }
         public virtual DbSet<LoaiKhongGianNhaHang> LoaiKhongGianNhaHangs { get; set; }
         public virtual DbSet<LoaiMon> LoaiMons { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
@@ -40,7 +40,7 @@ namespace WebsiteNhaHang.Models
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
         public virtual DbSet<SuKien> SuKiens { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
-        public virtual DbSet<ThongTinNhaHang> ThongTinNhaHangs { get; set; }
         public virtual DbSet<TuyenDung> TuyenDungs { get; set; }
+        public virtual DbSet<ThongTinNhaHang> ThongTinNhaHangs { get; set; }
     }
 }

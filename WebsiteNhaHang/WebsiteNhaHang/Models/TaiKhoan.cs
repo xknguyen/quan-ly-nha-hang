@@ -22,8 +22,8 @@ namespace WebsiteNhaHang.Models
             this.KhongGianNhaHangs = new HashSet<KhongGianNhaHang>();
             this.KhuyenMais = new HashSet<KhuyenMai>();
             this.SuKiens = new HashSet<SuKien>();
-            this.ThongTinNhaHangs = new HashSet<ThongTinNhaHang>();
             this.TuyenDungs = new HashSet<TuyenDung>();
+            this.ThongTinNhaHangs = new HashSet<ThongTinNhaHang>();
         }
     
         public int MaTaiKhoan { get; set; }
@@ -49,8 +49,8 @@ namespace WebsiteNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuKien> SuKiens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThongTinNhaHang> ThongTinNhaHangs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TuyenDung> TuyenDungs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThongTinNhaHang> ThongTinNhaHangs { get; set; }
     }
 }

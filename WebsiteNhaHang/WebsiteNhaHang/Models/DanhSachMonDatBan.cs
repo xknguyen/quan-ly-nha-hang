@@ -16,9 +16,11 @@ namespace WebsiteNhaHang.Models
     {
         public int MaDatBan { get; set; }
         public int MaMonAn { get; set; }
+        public Nullable<int> KieuDatBan { get; set; }
         public Nullable<int> SoLuong { get; set; }
     
         public virtual DatBan DatBan { get; set; }
+        public virtual KieuDatBan KieuDatBan1 { get; set; }
         public virtual MonAn MonAn { get; set; }
     }
 }
