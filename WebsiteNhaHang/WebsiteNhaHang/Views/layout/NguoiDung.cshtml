@@ -6,8 +6,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Nhà hàng Ganeya Nhật Bản">
+    <meta name="keywords" content="Những món ăn Nhật ngon nhất">
+    <meta name="author" content="Internship CongNV">
 
     <title>GANEYA Nhật Bản</title>
 
@@ -21,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="~/Content/css/business-casual.css" rel="stylesheet">
+
     <style>
         #DangXuat {
             display: none;
@@ -206,9 +208,10 @@
         <script src="~/Content/vendor/jquery/jquery.min.js"></script>
         <script src="~/Content/vendor/popper/popper.min.js"></script>
         <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/scripts/giohang.js"></script>
         <script>
             function heartBeat() {
-                $.get("TuyenDung/DemTuyenDung", function (data) { });
+                $.get("DatBan/GioHang", function (data) { });
             }
 
             $(function () {

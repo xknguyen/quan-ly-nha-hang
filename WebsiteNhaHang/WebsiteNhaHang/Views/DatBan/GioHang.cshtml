@@ -3,8 +3,11 @@
 @{
     int i = 0;
     string a=null;
+    var b = DateTime.Now;
 }
-
+<link href="~/Content/datetime/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datetime/jquery.js"></script>
+<script src="~/Content/datetime/build/jquery.datetimepicker.full.js"></script>
 <div class="modal fade bd-example-modal-lg-9-m" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -44,12 +47,12 @@
                                     <td>@item.sTenSp</td>                                    
                                     <td>@string.Format("{0:0,0}", @item.dDonGia) VND</td>
                                     <td>                                        
-                                        <input type="number" class="txtSoLuong" data-id="@item.iMaSP" data-loai="@item.iLoaiDat" value="@item.iSoLuong" min="1" max="15">
-                                        <button class="btn btn-secondary mt-1 txtCapNhap text-left"style="width:90%">Cập Nhập</button>                                            
+                                        <input type="number" class="txtSoLuong rounded text-center" data-id="@item.iMaSP" data-loai="@item.iLoaiDat" value="@item.iSoLuong" min="1" max="15" />
+                                        <button class="txtCapNhap btn btn-light mt-1 text-left"style="width:90%">Cập Nhập</button>                                            
                                     </td>                                        
                                     <td>@string.Format("{0:0,0}", @item.dThanhTien) VND</td>
                                     <td>
-                                        <button type="button" class="txtXoa" data-id="@item.iMaSP" data-loai="@item.iLoaiDat" aria-label="Close">
+                                        <button type="button" class="txtXoa close" data-id="@item.iMaSP" data-loai="@item.iLoaiDat" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </td>
@@ -58,88 +61,48 @@
                         </tbody>
                     </table>
                 </div>
-                <p>Tổng tiền thanh toán: @string.Format("{0:0,0}", @ViewBag.TongTien) VND</p>
-            </div>
-            <div class="modal-footer">
-                <p>Hiện có @i loại được chọn</p>
-                @*@Html.ActionLink("Xóa Giỏ Hàng", "XoaGioHang2", "DatBan",new { @class = "btn btn-primary btn-lg", @role = "button",@style="width=3%"})*@
                 
-                @*<button class="btn btn-secondary" id="txtCapNhap">Cập Nhập</button>*@
-                <button type="button" id="btnXoa" class="btn btn-secondary">Xóa Giỏ Hàng</button>
-                <button type="button" class="btn btn-primary">Đặt Bàn</button>
+            </div>
+            <div class="modal-footer row">
+                <div class="mr-auto col-lg-7">
+                    
+                    <div class="col-sm-5 float-left">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Số người</span>
+                            <input type="number" class="form-control" min="1" max="20" value="1" data-toggle="tooltip" data-placement="right" title="Số người tham gia." />
+                        </div>
+                    </div>
+                    <div class="col-sm-7 float-left">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Ngày đến</span>
+                            <input type="text" class="form-control" id="datetimepicker" data-toggle="tooltip" data-placement="right" title="Đặt ít nhất trước 3 tiếng, từ 11h30 đến 14h và 17h đến 23h hằng ngày." />
+                        </div>
+                    </div>                    
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" id="btnXoa" class="btn btn-secondary">Xóa Giỏ Hàng</button>
+                    <button type="button" class="btn btn-primary" >Đặt Bàn</button>                    
+                </div>
+                <div class="mr-auto mt-3 ml-4">
+                    <h5>Tổng tiền: @string.Format("{0:0,0}", @ViewBag.TongTien) <span class="text-danger">VND</span></h5>
+                </div>
+                
             </div>
         </div>
     </div>
 
 </div>  
-
-<script type="text/javascript">
-     
-    $(document).ready(function () {
-        
-        $('.txtCapNhap').click(function () {
-            var soLuong = $('.txtSoLuong').val();
-            var maSP=$('.txtSoLuong').data('id');
-            var loaiDat=$('.txtSoLuong').data('loai');
-            $.ajax({
-                
-                type: 'POST',
-                dataType: 'json',
-                //data: { gioHang: JSON.stringify(duLieu) },
-                data:{
-                    iSoLuong:soLuong ,
-                    iMaSP:maSP ,
-                    iLoaiDat: loaiDat
-                },
-                url: '/DatBan/CapNhapSoLuong',
-                success: function (res) {
-                    if (res.status == true) {
-                        alert("Sửa thành công!")
-                        window.location.href = $(location).attr('href');
-                    }                    
-                },
-                //error: function() {
-                //    alert("Loi");
-                //}
-            })
+<script>
+            var tomorrow = new Date();
+            tomorrow.setHours(tomorrow.getHours() + 3);
+            $('#datetimepicker').datetimepicker({
+                dayOfWeekStart: 1,
+                format: 'd/m/y H:i',
+                lang: 'en',
+                //enabledHours: [14, 15, 16, 17, 18],
+                minDate: tomorrow,
+                step: 10,
             });
-        $('#btnXoa').off('click').on('click', function () {
-            $.ajax({
-                url: '/DatBan/XoaTatCa',
-                dataType: 'json',
-                type: 'POST',
-                success: function (res) {
-                    if (res.status == true) {
-                        alert("Xóa thành công!")
-                        window.location.href = $(location).attr('href');
-                    }
-                }
-            })
-        });
-        $('.txtXoa').click(function () {
-            var maSP = $('.txtXoa').data('id');
-            var loai = $('.txtXoa').data('loai')
-            $.ajax({
-
-                type: 'POST',
-                dataType: 'json',
-                //data: { gioHang: JSON.stringify(duLieu) },
-                data: {
-                    iMaSP: maSP,
-                    iLoaiDat:loai,
-                },
-                url: '/DatBan/XoaGioHang',
-                success: function (res) {
-                    if (res.status == true) {
-                        window.location.href = $(location).attr('href');
-                    }
-                },
-                //error: function() {
-                //    alert("Loi");
-                //}
-            })
-        });
-
-        
-    });
 </script>
+
+

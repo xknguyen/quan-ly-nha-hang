@@ -21,15 +21,11 @@ namespace WebsiteNhaHang.Controllers
 
         }
 
-        public ActionResult DemTuyenDung()
+        public PartialViewResult DemTuyenDung()
         {
             ViewBag.DemTuyenDung = db.TuyenDungs.Count();
-            return View();
+            return PartialView();
         }
 
-        public ActionResult KeepAlive()
-        {
-            return ViewBag();
-        }
-}
+    }
 }

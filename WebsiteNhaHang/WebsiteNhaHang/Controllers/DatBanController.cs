@@ -71,22 +71,25 @@ namespace WebsiteNhaHang.Controllers
                 status = true
             });
         }
+        [HttpPost]
         public JsonResult XoaGioHang(int iMaSP,int iLoaiDat)
         {
-            //MonAn monAn = db.MonAns.SingleOrDefault(n => n.MaMon == iMaSP);
-            //GoiCombo goiCombo = db.GoiComboes.SingleOrDefault(n => n.MaCombo == iMaSP);
-            //if (monAn == null | goiCombo == null)
-            //{
-            //    Response.StatusCode = 404;
-            //    return null;
-            //}
             List<GioHang> lstGioHang = LayGioHang();
             GioHang sanPham = lstGioHang.SingleOrDefault(n => n.iMaSP == iMaSP&& n.iLoaiDat == iLoaiDat);
             if (sanPham != null)
             {
-                lstGioHang.RemoveAll(n => n.iMaSP == iMaSP);
+                lstGioHang.RemoveAll(n => n.iMaSP == iMaSP && n.iLoaiDat == iLoaiDat);
                 
             }
+            return Json(new
+            {
+                status = true
+            });
+        }
+        [HttpPost]
+        public JsonResult XoaTatCa()
+        {
+            Session.Remove("GioHang");
             return Json(new
             {
                 status = true
@@ -127,14 +130,6 @@ namespace WebsiteNhaHang.Controllers
             ViewBag.TongSoLuong = TongSoLuong();
             return PartialView();
         }
-        [HttpPost]
-        public JsonResult XoaTatCa()
-        {
-            Session.Remove("GioHang");
-            return Json(new
-            {
-                status = true
-            });
-        }
+        
     }
 }

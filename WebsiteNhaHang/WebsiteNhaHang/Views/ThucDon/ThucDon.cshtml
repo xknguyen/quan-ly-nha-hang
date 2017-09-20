@@ -6,6 +6,7 @@
     ViewBag.Title = "ThucDon";
     Layout = "~/Views/layout/NguoiDung.cshtml";
 }
+
 <style>
     #carouselExampleIndicators {
         display: none;
@@ -71,8 +72,9 @@
                                                     @using (Html.BeginForm("ThemGioHang", "DatBan", new { @iMaSP = @item.MaMon, @iLoaiDat = 1, @strURL = Request.Url.ToString() }))
                                                     {
                                                         <input type="submit" value="Đặt món" id="btnGioHang" class="btn btn-info" />
-                                                        @*<a href="#" class="btn btn-info">Đặt món</a>*@
+                                                        
                                                     }
+                                                    @*<a href="#" class="btn btn-info txtDatMon" data-ma="@item.MaMon">Đặt món</a>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +84,7 @@
                         </div>
                 </div>
             </div>
-        }
+        }        
 
     </div>
     <div class="ml-5">
@@ -104,3 +106,4 @@
         @Html.Action("LoaiMonAn","ThucDon")
     </div>
 </div>
+
