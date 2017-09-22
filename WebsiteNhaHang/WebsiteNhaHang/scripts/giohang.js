@@ -4,14 +4,13 @@
     },
     regEvents: function () { 
         $('.txtCapNhap').off('click').on('click', function () {
-            var soLuong = $('.txtSoLuong').val();
-            var maSP=$('.txtSoLuong').data('id');
-            var loaiDat=$('.txtSoLuong').data('loai');
+            var soLuong = $('#txtSoLuong').val();
+            var maSP=$('#txtSoLuong').data('id');
+            var loaiDat=$('#txtSoLuong').data('loai');
             $.ajax({
                 
                 type: 'POST',
                 dataType: 'json',
-                //data: { gioHang: JSON.stringify(duLieu) },
                 data:{
                     iSoLuong:soLuong ,
                     iMaSP:maSP ,
@@ -20,13 +19,9 @@
                 url: '/DatBan/CapNhapSoLuong',
                 success: function (res) {
                     if (res.status == true) {
-                        //alert("Sửa thành công!")
                         window.location.href = $(location).attr('href');
                     }                    
                 },
-                //error: function() {
-                //    alert("Loi");
-                //}
             })
         });
         $('#btnXoa').off('click').on('click', function () {
@@ -61,9 +56,6 @@
                         window.location.href = $(location).attr('href');
                     }
                 },
-                //error: function() {
-                //    alert("Loi");
-                //}
             })
         });
     }

@@ -37,7 +37,6 @@ namespace WebsiteNhaHang.Models
         public virtual DbSet<LoaiMon> LoaiMons { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
         public virtual DbSet<MonAn> MonAns { get; set; }
-        public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
         public virtual DbSet<SuKien> SuKiens { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TuyenDung> TuyenDungs { get; set; }

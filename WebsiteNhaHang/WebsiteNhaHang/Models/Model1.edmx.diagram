@@ -5,23 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="00886bc318c14e2ebf22d6ae354fcf9d" Name="Diagram1">
-        <EntityTypeShape EntityType="NhaHangModel.BinhLuan" Width="1.5" PointX="5.25" PointY="8.875" />
-        <EntityTypeShape EntityType="NhaHangModel.DanhSachDatCombo" Width="1.5" PointX="7.5" PointY="18.25" />
-        <EntityTypeShape EntityType="NhaHangModel.DanhSachMonDatBan" Width="1.5" PointX="10.5" PointY="15.25" />
-        <EntityTypeShape EntityType="NhaHangModel.DatBan" Width="1.5" PointX="5.25" PointY="15.125" />
-        <EntityTypeShape EntityType="NhaHangModel.GoiCombo" Width="1.5" PointX="5.25" PointY="30" />
-        <EntityTypeShape EntityType="NhaHangModel.KieuDatBan" Width="1.5" PointX="8.25" PointY="10.75" />
-        <EntityTypeShape EntityType="NhaHangModel.KhongGianNhaHang" Width="1.5" PointX="8.25" PointY="13.875" />
-        <EntityTypeShape EntityType="NhaHangModel.KhuyenMai" Width="1.5" PointX="5.25" PointY="21.875" />
-        <EntityTypeShape EntityType="NhaHangModel.LoaiKhongGianNhaHang" Width="1.5" PointX="6" PointY="12.5" />
-        <EntityTypeShape EntityType="NhaHangModel.LoaiMon" Width="1.5" PointX="5.25" PointY="33.375" />
-        <EntityTypeShape EntityType="NhaHangModel.LoaiTaiKhoan" Width="1.5" PointX="0.75" PointY="15.625" />
-        <EntityTypeShape EntityType="NhaHangModel.MonAn" Width="1.5" PointX="7.5" PointY="21.875" />
-        <EntityTypeShape EntityType="NhaHangModel.PhanQuyen" Width="1.5" PointX="3" PointY="26" />
-        <EntityTypeShape EntityType="NhaHangModel.SuKien" Width="1.5" PointX="5.25" PointY="5.375" />
-        <EntityTypeShape EntityType="NhaHangModel.TaiKhoan" Width="1.5" PointX="3" PointY="13" />
-        <EntityTypeShape EntityType="NhaHangModel.TuyenDung" Width="1.5" PointX="5.25" PointY="18.625" />
-        <EntityTypeShape EntityType="NhaHangModel.ThongTinNhaHang" Width="1.5" PointX="5.25" PointY="25.75" />
+        <EntityTypeShape EntityType="NhaHangModel.BinhLuan" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="NhaHangModel.DanhSachDatCombo" Width="1.5" PointX="7.5" PointY="22.25" />
+        <EntityTypeShape EntityType="NhaHangModel.DanhSachMonDatBan" Width="1.5" PointX="9.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NhaHangModel.DatBan" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="NhaHangModel.GoiCombo" Width="1.5" PointX="5.25" PointY="30.25" />
+        <EntityTypeShape EntityType="NhaHangModel.KieuDatBan" Width="1.5" PointX="7.5" PointY="26.125" />
+        <EntityTypeShape EntityType="NhaHangModel.KhongGianNhaHang" Width="1.5" PointX="8.25" PointY="13.75" />
+        <EntityTypeShape EntityType="NhaHangModel.KhuyenMai" Width="1.5" PointX="5.25" PointY="15.125" />
+        <EntityTypeShape EntityType="NhaHangModel.LoaiKhongGianNhaHang" Width="1.5" PointX="6" PointY="12.375" />
+        <EntityTypeShape EntityType="NhaHangModel.LoaiMon" Width="1.5" PointX="5.25" PointY="33.625" />
+        <EntityTypeShape EntityType="NhaHangModel.LoaiTaiKhoan" Width="1.5" PointX="0.75" PointY="14.375" />
+        <EntityTypeShape EntityType="NhaHangModel.MonAn" Width="1.5" PointX="7.5" PointY="18.125" />
+        <EntityTypeShape EntityType="NhaHangModel.SuKien" Width="1.5" PointX="5.25" PointY="22.5" />
+        <EntityTypeShape EntityType="NhaHangModel.TaiKhoan" Width="1.5" PointX="3" PointY="12.875" />
+        <EntityTypeShape EntityType="NhaHangModel.TuyenDung" Width="1.5" PointX="5.25" PointY="26" />
+        <EntityTypeShape EntityType="NhaHangModel.ThongTinNhaHang" Width="1.5" PointX="5.25" PointY="8" />
         <AssociationConnector Association="NhaHangModel.FK_BinhLuan_TaiKhoan" />
         <AssociationConnector Association="NhaHangModel.FK_DanhSachDatCombo_DatBan" />
         <AssociationConnector Association="NhaHangModel.FK_DanhSachDatCombo_GoiCombo1" />
@@ -38,7 +37,6 @@
         <AssociationConnector Association="NhaHangModel.FK_SuKien_TaiKhoan1" />
         <AssociationConnector Association="NhaHangModel.FK_TuyenDung_TaiKhoan" />
         <AssociationConnector Association="NhaHangModel.FK_ThongTinNhaHang_TaiKhoan1" />
-        <AssociationConnector Association="NhaHangModel.ChiTietPhanQuyen" />
         <AssociationConnector Association="NhaHangModel.GoiComboChiTiet" />
         <AssociationConnector Association="NhaHangModel.GiamGia" />
       </Diagram>

@@ -18,7 +18,6 @@ namespace WebsiteNhaHang.Models
         public LoaiTaiKhoan()
         {
             this.TaiKhoans = new HashSet<TaiKhoan>();
-            this.PhanQuyens = new HashSet<PhanQuyen>();
         }
     
         public int MaLoaiTaiKhoan { get; set; }
@@ -26,7 +25,5 @@ namespace WebsiteNhaHang.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhanQuyen> PhanQuyens { get; set; }
     }
 }

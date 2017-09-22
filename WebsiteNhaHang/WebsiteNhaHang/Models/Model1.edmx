@@ -14,14 +14,6 @@
           <Property Name="BinhLuan" Type="nvarchar" MaxLength="500" />
           <Property Name="NgayDang" Type="datetime" />
         </EntityType>
-        <EntityType Name="ChiTietPhanQuyen">
-          <Key>
-            <PropertyRef Name="MaPhanQuyen" />
-            <PropertyRef Name="MaLoaiTaiKhoan" />
-          </Key>
-          <Property Name="MaPhanQuyen" Type="int" Nullable="false" />
-          <Property Name="MaLoaiTaiKhoan" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="DanhSachDatCombo">
           <Key>
             <PropertyRef Name="MaDatBan" />
@@ -146,13 +138,6 @@
           <Property Name="ChiTiet" Type="nvarchar" MaxLength="1000" />
           <Property Name="SoLuotDat" Type="int" />
         </EntityType>
-        <EntityType Name="PhanQuyen">
-          <Key>
-            <PropertyRef Name="MaPhanQuyen" />
-          </Key>
-          <Property Name="MaPhanQuyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenPhanQuyen" Type="nvarchar" MaxLength="200" />
-        </EntityType>
         <EntityType Name="SuKien">
           <Key>
             <PropertyRef Name="MaSuKien" />
@@ -216,30 +201,6 @@
             </Principal>
             <Dependent Role="BinhLuan">
               <PropertyRef Name="MaTaiKhoan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietPhanQuyen_LoaiTaiKhoan">
-          <End Role="LoaiTaiKhoan" Type="Self.LoaiTaiKhoan" Multiplicity="1" />
-          <End Role="ChiTietPhanQuyen" Type="Self.ChiTietPhanQuyen" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoaiTaiKhoan">
-              <PropertyRef Name="MaLoaiTaiKhoan" />
-            </Principal>
-            <Dependent Role="ChiTietPhanQuyen">
-              <PropertyRef Name="MaLoaiTaiKhoan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietPhanQuyen_PhanQuyen">
-          <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="1" />
-          <End Role="ChiTietPhanQuyen" Type="Self.ChiTietPhanQuyen" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhanQuyen">
-              <PropertyRef Name="MaPhanQuyen" />
-            </Principal>
-            <Dependent Role="ChiTietPhanQuyen">
-              <PropertyRef Name="MaPhanQuyen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -473,7 +434,6 @@
         </Association>
         <EntityContainer Name="NhaHangModelStoreContainer">
           <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ChiTietPhanQuyen" EntityType="Self.ChiTietPhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhSachDatCombo" EntityType="Self.DanhSachDatCombo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhSachMonDatBan" EntityType="Self.DanhSachMonDatBan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DatBan" EntityType="Self.DatBan" Schema="dbo" store:Type="Tables" />
@@ -487,7 +447,6 @@
           <EntitySet Name="LoaiMon" EntityType="Self.LoaiMon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MonAn" EntityType="Self.MonAn" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuKien" EntityType="Self.SuKien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TuyenDung" EntityType="Self.TuyenDung" Schema="dbo" store:Type="Tables" />
@@ -495,14 +454,6 @@
           <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="Self.FK_BinhLuan_TaiKhoan">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietPhanQuyen_LoaiTaiKhoan" Association="Self.FK_ChiTietPhanQuyen_LoaiTaiKhoan">
-            <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoan" />
-            <End Role="ChiTietPhanQuyen" EntitySet="ChiTietPhanQuyen" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietPhanQuyen_PhanQuyen" Association="Self.FK_ChiTietPhanQuyen_PhanQuyen">
-            <End Role="PhanQuyen" EntitySet="PhanQuyen" />
-            <End Role="ChiTietPhanQuyen" EntitySet="ChiTietPhanQuyen" />
           </AssociationSet>
           <AssociationSet Name="FK_DanhSachDatCombo_DatBan" Association="Self.FK_DanhSachDatCombo_DatBan">
             <End Role="DatBan" EntitySet="DatBan" />
@@ -598,7 +549,6 @@
           <EntitySet Name="LoaiMons" EntityType="NhaHangModel.LoaiMon" />
           <EntitySet Name="LoaiTaiKhoans" EntityType="NhaHangModel.LoaiTaiKhoan" />
           <EntitySet Name="MonAns" EntityType="NhaHangModel.MonAn" />
-          <EntitySet Name="PhanQuyens" EntityType="NhaHangModel.PhanQuyen" />
           <EntitySet Name="SuKiens" EntityType="NhaHangModel.SuKien" />
           <EntitySet Name="TaiKhoans" EntityType="NhaHangModel.TaiKhoan" />
           <EntitySet Name="TuyenDungs" EntityType="NhaHangModel.TuyenDung" />
@@ -666,10 +616,6 @@
           <AssociationSet Name="FK_ThongTinNhaHang_TaiKhoan1" Association="NhaHangModel.FK_ThongTinNhaHang_TaiKhoan1">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="ThongTinNhaHang" EntitySet="ThongTinNhaHangs" />
-          </AssociationSet>
-          <AssociationSet Name="ChiTietPhanQuyen" Association="NhaHangModel.ChiTietPhanQuyen">
-            <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
-            <End Role="PhanQuyen" EntitySet="PhanQuyens" />
           </AssociationSet>
           <AssociationSet Name="GoiComboChiTiet" Association="NhaHangModel.GoiComboChiTiet">
             <End Role="GoiCombo" EntitySet="GoiComboes" />
@@ -805,7 +751,6 @@
           <Property Name="MaLoaiTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoaiTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TaiKhoans" Relationship="NhaHangModel.FK_TaiKhoan_LoaiTaiKhoan" FromRole="LoaiTaiKhoan" ToRole="TaiKhoan" />
-          <NavigationProperty Name="PhanQuyens" Relationship="NhaHangModel.ChiTietPhanQuyen" FromRole="LoaiTaiKhoan" ToRole="PhanQuyen" />
         </EntityType>
         <EntityType Name="MonAn">
           <Key>
@@ -822,14 +767,6 @@
           <NavigationProperty Name="LoaiMon1" Relationship="NhaHangModel.FK_MonAn_LoaiMon" FromRole="MonAn" ToRole="LoaiMon" />
           <NavigationProperty Name="GoiComboes" Relationship="NhaHangModel.GoiComboChiTiet" FromRole="MonAn" ToRole="GoiCombo" />
           <NavigationProperty Name="KhuyenMais" Relationship="NhaHangModel.GiamGia" FromRole="MonAn" ToRole="KhuyenMai" />
-        </EntityType>
-        <EntityType Name="PhanQuyen">
-          <Key>
-            <PropertyRef Name="MaPhanQuyen" />
-          </Key>
-          <Property Name="MaPhanQuyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenPhanQuyen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LoaiTaiKhoans" Relationship="NhaHangModel.ChiTietPhanQuyen" FromRole="PhanQuyen" ToRole="LoaiTaiKhoan" />
         </EntityType>
         <EntityType Name="SuKien">
           <Key>
@@ -1088,10 +1025,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ChiTietPhanQuyen">
-          <End Type="NhaHangModel.LoaiTaiKhoan" Role="LoaiTaiKhoan" Multiplicity="*" />
-          <End Type="NhaHangModel.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
-        </Association>
         <Association Name="GoiComboChiTiet">
           <End Type="NhaHangModel.GoiCombo" Role="GoiCombo" Multiplicity="*" />
           <End Type="NhaHangModel.MonAn" Role="MonAn" Multiplicity="*" />
@@ -1233,14 +1166,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PhanQuyens">
-            <EntityTypeMapping TypeName="NhaHangModel.PhanQuyen">
-              <MappingFragment StoreEntitySet="PhanQuyen">
-                <ScalarProperty Name="TenPhanQuyen" ColumnName="TenPhanQuyen" />
-                <ScalarProperty Name="MaPhanQuyen" ColumnName="MaPhanQuyen" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SuKiens">
             <EntityTypeMapping TypeName="NhaHangModel.SuKien">
               <MappingFragment StoreEntitySet="SuKien">
@@ -1299,14 +1224,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ChiTietPhanQuyen" TypeName="NhaHangModel.ChiTietPhanQuyen" StoreEntitySet="ChiTietPhanQuyen">
-            <EndProperty Name="PhanQuyen">
-              <ScalarProperty Name="MaPhanQuyen" ColumnName="MaPhanQuyen" />
-            </EndProperty>
-            <EndProperty Name="LoaiTaiKhoan">
-              <ScalarProperty Name="MaLoaiTaiKhoan" ColumnName="MaLoaiTaiKhoan" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="GoiComboChiTiet" TypeName="NhaHangModel.GoiComboChiTiet" StoreEntitySet="GoiComboChiTiet">
             <EndProperty Name="MonAn">
               <ScalarProperty Name="MaMon" ColumnName="MaMonAn" />
