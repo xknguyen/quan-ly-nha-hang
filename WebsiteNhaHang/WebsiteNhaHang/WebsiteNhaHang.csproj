@@ -159,6 +159,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\business-casual.css" />
+    <Content Include="Content\css\evol-colorpicker.min.css" />
     <Content Include="Content\datetime\build\jquery.datetimepicker.full.js" />
     <Content Include="Content\datetime\build\jquery.datetimepicker.full.min.js" />
     <Content Include="Content\datetime\build\jquery.datetimepicker.min.css" />
@@ -172,6 +173,7 @@
     <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\ga.jpg" />
     <Content Include="Content\img\h2.jpg" />
     <Content Include="Content\img\hambogo.jpg" />
@@ -210,6 +212,7 @@
     <Content Include="Content\img\nha bep.jpg" />
     <Content Include="Content\img\nhatren2.jpg" />
     <Content Include="Content\img\nuoc ngot.jpg" />
+    <Content Include="Content\img\shirt.gif" />
     <Content Include="Content\img\slide-1.jpg" />
     <Content Include="Content\img\slide-2.jpg" />
     <Content Include="Content\img\slide-3.jpg" />
@@ -350,6 +353,7 @@
     <Content Include="scripts\moment-with-locales.min.js" />
     <Content Include="scripts\moment.js" />
     <Content Include="scripts\moment.min.js" />
+    <Content Include="scripts\multiple-themes.js" />
     <Content Include="scripts\respond.js" />
     <Content Include="scripts\respond.min.js" />
     <None Include="scripts\_references.js" />
@@ -526,6 +530,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Examples\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

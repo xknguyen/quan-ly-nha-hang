@@ -9,7 +9,7 @@
     <meta name="description" content="Nhà hàng Ganeya Nhật Bản">
     <meta name="keywords" content="Những món ăn Nhật ngon nhất">
     <meta name="author" content="Internship CongNV">
-
+    <link rel="shortcut icon" href="~/Content/img/favicon.ico" /> 
     <title>GANEYA Nhật Bản</title>
 
     <!-- Bootstrap core CSS -->
@@ -17,6 +17,7 @@
     <link href="~/Content/PagedList.css" rel="stylesheet" />
     <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light-mint/all.min.css" />
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet">
@@ -37,17 +38,23 @@
             #DangXuat {
                 display: block;
             }
+            body
+            {
+               
+            }
         </style>
-    }
-
-
+    }    
+@{ 
+   
+    //var a = document.cookie;
+}
 </head>
 
-<body>
+<body id="MauChu">
 
     @Html.Action("ThongTinNhaHang1", "GioiThieu")
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4" >
         <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ganeya Nhật Bản</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -58,7 +65,7 @@
                     <a class="nav-link text-uppercase text-expanded" href="~/TrangChu/Index"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/GioiThieu/KhongGianNhaHang">Giới Thiệu</a>
+                    <a class="nav-link text-uppercase text-expanded " href="~/GioiThieu/KhongGianNhaHang">Giới Thiệu</a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <a class="nav-link text-uppercase text-expanded" href="~/ThucDon/ThucDon">Thực Đơn</a>
@@ -98,11 +105,35 @@
     </nav>
 
     <div class="container">
-
-
+        <!--Cài đặt đa giao diện-->
+        <div style="position: fixed; top: 5%; left: 0.5%; z-index: 2" id="GioHang1" >            
+            <div class="panel panel-default" style="width:auto">
+                <div class="panel-heading ">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">
+                            <span class="badge badge-light rounded-circle"><i class="fa fa-cog fa-1x"></i></span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse alert alert-light">
+                    <h4>Màu chữ</h4>
+                    <button type="button" class="btnMauChu1 btn btn-dark rounded-circle" data-color="text-dark"></button>
+                    <button type="button" class="btnMauChu5 btn btn-light rounded-circle border border-dark" data-color="text-light"></button>
+                    <button type="button" class="btnMauChu2 btn btn-primary rounded-circle" data-color="text-primary"></button>
+                    <button type="button" class="btnMauChu3 btn btn-danger rounded-circle" data-color="text-danger"></button>
+                    <button type="button" class="btnMauChu4 btn btn-warning rounded-circle" data-color="text-warning"></button>
+                    <hr />
+                    <h4>Màu nền</h4>
+                    <button type="button" class="btnMauNen2 btn btn-light rounded-circle border border-dark" data-color="#FAFAFA"></button>
+                    <button type="button" class="btnMauNen1 btn btn-dark rounded-circle" data-color="#19070B"></button>                    
+                    <button type="button" class="btnMauNen3 btn btn-success rounded-circle" data-color="#A9F5D0"></button>
+                    <button type="button" class="btnMauNen4 btn btn-warning rounded-circle" data-color="#DF7401"></button>
+                </div>
+            </div>
+        </div> 
         <div class="row">
             <!-- Giỏ hàng -->
-            <div style="position: fixed; top: 15%; right: 0.5%; z-index: 2" id="GioHang1">
+            <div style="position: fixed; top: 15%; right: 0.5%; z-index: 2; " id="GioHang1">
                 <img src="~/Content/img/icon_256.png" data-toggle="modal" data-target=".bd-example-modal-lg-9-m" style="max-width: 40px; max-height: 40px" /> <span class="badge badge-secondary">@Html.Action("tongSoLuong", "DatBan")</span>
             </div>            
                 @Html.Action("GioHang", "DatBan")
@@ -144,10 +175,10 @@
             </div>
             <!-- Welcome Message -->
             <div class="text-center mt-4">
-                <div class="text-heading text-muted text-lg">Welcome To</div>
+                <div class="text-heading text-lg"><p>Welcome To</p></div>
                 <h2 class="my-2">GANEYA Nhật Bản</h2>
-                <div class="text-heading text-muted text-lg">
-                    By <strong>Group 2</strong>
+                <div class="text-heading text-lg">
+                    <p>By <strong>Group 2</strong></p>
                 </div>
             </div>
         </div>
@@ -171,11 +202,13 @@
             </div>
         </footer>
         <!-- Bootstrap core JavaScript -->
-        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        <script src="~/Content/vendor/jquery/jquery.min.js"></script>        
         <script src="~/Content/vendor/popper/popper.min.js"></script>
         <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/scripts/multiple-themes.js"></script>
         @*<script src="~/scripts/giohang.js"></script>*@
-        <script>
+        <script>            
+
             function heartBeat() {
                 $.get("DatBan/GioHang", function (data) { });
             }

@@ -11,13 +11,13 @@ namespace WebsiteNhaHang.Controllers
 {
     public class ThucDonController : Controller
     {
-        NhaHangEntities db=new NhaHangEntities();
+        NhaHangEntities db = new NhaHangEntities();
         // GET: ThucDon
         public ActionResult ThucDon(int? page)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 6;
-            return View(db.MonAns.ToList().OrderBy(n=>n.TenMon).ToPagedList(pageNumber,pageSize));
+            return View(db.MonAns.ToList().OrderBy(n => n.TenMon).ToPagedList(pageNumber, pageSize));
         }
         public PartialViewResult MonDuocDatNhieu()
         {
@@ -27,16 +27,16 @@ namespace WebsiteNhaHang.Controllers
         {
             return PartialView(db.LoaiMons.ToList());
         }
-        public ViewResult MonAnTheoLoai(int maLoai=0)
+        public ViewResult MonAnTheoLoai(int maLoai = 0)
         {
             LoaiMon lm = db.LoaiMons.SingleOrDefault(n => n.MaLoai == maLoai);
-            if(lm==null)
+            if (lm == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            List<MonAn> lstMonAn = db.MonAns.Where(n => n.LoaiMon == maLoai).OrderBy(n=>n.TenMon).ToList();
-            if(lstMonAn.Count==0)
+            List<MonAn> lstMonAn = db.MonAns.Where(n => n.LoaiMon == maLoai).OrderBy(n => n.TenMon).ToList();
+            if (lstMonAn.Count == 0)
             {
                 ViewBag.MonAn = "Không có món ăn nào trong loại này!!";
             }
