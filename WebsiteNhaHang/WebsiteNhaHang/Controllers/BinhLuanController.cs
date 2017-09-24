@@ -16,7 +16,7 @@ namespace WebsiteNhaHang.Controllers
         }
         public ActionResult DanhSachBinhLuan()
         {
-            return View(db.BinhLuans.Take(15).ToList());
+            return View(db.BinhLuans.OrderByDescending(n=>n.NgayDang).Take(15).ToList());
         }
 
         public PartialViewResult DangBinhLuan()
