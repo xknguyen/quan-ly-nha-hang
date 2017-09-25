@@ -8,9 +8,6 @@
     Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
 }
 
-<script type="text/javascript">
-    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
-</script>
 
 <div class="row-fluid">
 
@@ -58,17 +55,17 @@
                 <th>
                     @Html.DisplayNameFor(model => model.First().Gia)
                 </th>
-                <th class="hidden-320">
+                @*<th class="hidden-320">
                     @Html.DisplayNameFor(model => model.First().ChiTiet)
-                </th>
+                </th>*@
 
                 <th class="hidden-phone">
                     @*<i class="icon-time bigger-110 hidden-phone"></i>*@
                     @Html.DisplayNameFor(model => model.First().SoLuotDat)
                 </th>
-                <th class="hidden-320">
-                    @Html.DisplayNameFor(model => model.First().LoaiMon1.TenLoai)
-                </th>
+                @*<th class="hidden-320">
+                    @Html.DisplayNameFor(model => model.First().TenMon)
+                </th>*@
 
                 <th></th>
             </tr>
@@ -92,82 +89,48 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Gia)
                     </td>
-                    <td class="hidden-320">
+                    @*<td class="hidden-320">
                         @Html.DisplayFor(modelItem => item.ChiTiet)
-                    </td>
+                    </td>*@
                     <td class="hidden-phone">
                         @Html.DisplayFor(modelItem => item.SoLuotDat)
                     </td>
 
-                    <td class="hidden-320">
+                    @*<td class="hidden-320">
                         <span class="label label-warning">
                             @Html.DisplayFor(modelItem => item.LoaiMon1.TenLoai)
                         </span>
-                    </td>
-
+                    </td>*@
                     <td>
-                        @*<div class="hidden-phone visible-desktop action-buttons">*@
-                        @*<button> <i class="icon-pencil bigger-130 green"></i> </button>*@
-                        @*<a class="blue" href="">
-                                <i class="icon-zoom-in bigger-130"></i>
-
-                            </a>*@
-
-                        <div style="float: left">
-                            <button class="btn btn-success" type="submit">
-                                @Ajax.ActionLink(" ", "Delete", new {id = 1}, new AjaxOptions
-                                {
-                                    Confirm = "Are you sure you wish to delete?",
-                                    HttpMethod = "Delete",
-                                    InsertionMode = InsertionMode.Replace,
-                                    LoadingElementId = "div_loading"
-                                }, new {@class = "glyphicon glyphicon-trash"})
-                            </button>
-
-                        </div>
-                        
-                        <button> <i class="icon-pencil bigger-130 green">@Html.ActionLink("Sửa", "Edit", new { id = item.MaMon })</i> </button>
-
-                        <button>  <i class="icon-trash bigger-130 red">@Html.ActionLink("Xóa", "Delete", new { id = item.MaMon })   </i></button>
-
+                        <i class="icon-pencil bigger-130 green">@Html.ActionLink("Edit", "Edit", new { id = item.MaMon })</i> ||
+                        <i class="icon-zoom-in grey"> @Html.ActionLink("Details", "Details", new { id = item.MaMon })</i> ||
+                        <i class="icon-trash bigger-130 red">@Html.ActionLink("Delete", "Delete", new { id = item.MaMon})</i>
                     </td>
-                </tr>
+                   
+                    </tr>
 
-            }
-        </table>
-        <div class="dataTables_paginate paging_bootstrap pagination align-center">
-            @Html.ActionLink("Thêm Món Ăn", "Create")
-        </div>
-        <div class="row-fluid">
-            <div class="span6">
-                <div class="dataTables_info" id="sample-table-2_info">
-                    trang@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
-                </div>
+                }
+            </table>
+            <div class="dataTables_paginate paging_bootstrap pagination align-center">
+                @Html.ActionLink("Thêm Món Ăn", "Create")
             </div>
-            <div class="span6">
-                <div class="dataTables_paginate paging_bootstrap pagination">
-                    <ul>
-                        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }))
-                    </ul>
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="dataTables_info" id="sample-table-2_info">
+                        trang@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="dataTables_paginate paging_bootstrap pagination">
+                        <ul>
+                            @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }))
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<script type="text/javascript">
-    $('#UseShipAddr').click(function() {
-        $.ajax({
-            url: "@(Url.Action("UseShippingAddress", "Checkout"))",
-            type: "POST",
-            data: { id: 50 },
-            cache: false,
-            async: true,
-            success: function(data) {
-                alert(data);
-            }
-        });
-    });
-</script>
+   
 

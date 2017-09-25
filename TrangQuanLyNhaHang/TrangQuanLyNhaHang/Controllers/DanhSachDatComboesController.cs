@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using TrangQuanLyNhaHang.Models;
 
+using PagedList;
+using PagedList.Mvc;
 namespace TrangQuanLyNhaHang.Controllers
 {
     public class DanhSachDatComboesController : Controller
@@ -15,10 +17,12 @@ namespace TrangQuanLyNhaHang.Controllers
         private NhaHangEntities db = new NhaHangEntities();
 
         // GET: DanhSachDatComboes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            int pageNumber = (page ?? 1);
+            int pageSize = 5;
             var danhSachDatComboes = db.DanhSachDatComboes.Include(d => d.DatBan).Include(d => d.GoiCombo);
-            return View(danhSachDatComboes.ToList());
+            return View(danhSachDatComboes.ToList().OrderBy(n => n.MaCombo).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: DanhSachDatComboes/Details/5
@@ -59,7 +63,7 @@ namespace TrangQuanLyNhaHang.Controllers
             }
 
             ViewBag.MaDatBan = new SelectList(db.DatBans, "MaDatBan", "MaDatBan", danhSachDatCombo.MaDatBan);
-            ViewBag.MaComBo = new SelectList(db.GoiComboes, "MaCombo", "TenComBo", danhSachDatCombo.MaComBo);
+            ViewBag.MaComBo = new SelectList(db.GoiComboes, "MaCombo", "TenComBo", danhSachDatCombo.MaCombo);
             return View(danhSachDatCombo);
         }
 
@@ -76,7 +80,7 @@ namespace TrangQuanLyNhaHang.Controllers
                 return HttpNotFound();
             }
             ViewBag.MaDatBan = new SelectList(db.DatBans, "MaDatBan", "MaDatBan", danhSachDatCombo.MaDatBan);
-            ViewBag.MaComBo = new SelectList(db.GoiComboes, "MaCombo", "TenComBo", danhSachDatCombo.MaComBo);
+            ViewBag.MaComBo = new SelectList(db.GoiComboes, "MaCombo", "TenComBo", danhSachDatCombo.MaCombo);
             return View(danhSachDatCombo);
         }
 
@@ -94,7 +98,7 @@ namespace TrangQuanLyNhaHang.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.MaDatBan = new SelectList(db.DatBans, "MaDatBan", "MaDatBan", danhSachDatCombo.MaDatBan);
-            ViewBag.MaComBo = new SelectList(db.GoiComboes, "MaCombo", "TenComBo", danhSachDatCombo.MaComBo);
+            ViewBag.MaComBo = new SelectList(db.GoiComboes, "MaCombo", "TenComBo", danhSachDatCombo.MaCombo);
             return View(danhSachDatCombo);
         }
 

@@ -7,7 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrangQuanLyNhaHang.Models;
-
+using PagedList;
+using PagedList.Mvc;
 namespace TrangQuanLyNhaHang.Controllers
 {
     public class TaiKhoansController : Controller
@@ -15,10 +16,12 @@ namespace TrangQuanLyNhaHang.Controllers
         private NhaHangEntities db = new NhaHangEntities();
 
         // GET: TaiKhoans
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var taiKhoans = db.TaiKhoans.Include(t => t.LoaiTaiKhoan1);
-            return View(taiKhoans.ToList());
+            int pageNumber = (page ?? 1);
+            int pageSize = 5;
+            var taiKhoans = db.TaiKhoans;
+            return View(taiKhoans.ToList().OrderBy(n => n.MaTaiKhoan).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: TaiKhoans/Details/5

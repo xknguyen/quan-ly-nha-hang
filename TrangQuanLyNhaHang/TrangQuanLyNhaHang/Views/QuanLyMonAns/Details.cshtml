@@ -5,63 +5,100 @@
     Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>MonAn</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenMon)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenMon)
-        </dd>
+<div class="form-horizontal">
+    <div class="page-content">
+        <div class="page-header position-relative">
+            <h1>
+                Xem Chi Tiet Món Ăn
+                @*<small>
+                        <i class="icon-double-angle-right"></i>
+                        Common form elements and layouts
+                    </small>*@
+            </h1>
+        </div><!-- /.page-header -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
-        </dt>
+        <div class="row-fluid">
+            <div class="span12 form-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.HinhAnh)
-        </dd>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TenMon)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TenMon)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gia)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.HinhAnh)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ChiTiet)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.HinhAnh)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ChiTiet)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Gia)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuotDat)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Gia)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SoLuotDat)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ChiTiet)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiMon1.TenLoai)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ChiTiet)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiMon1.TenLoai)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SoLuotDat)
+                    </dt>
 
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.SoLuotDat)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LoaiMon1.TenLoai)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LoaiMon1.TenLoai)
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+
+                <div class="col-md-offset-2 col-md-10">
+                    <i class="icon-ok bigger-110"></i>
+                    @Html.ActionLink("Đến trang sửa món ăn", "Edit", new { id = Model.MaMon })
+                    </div>
+
+                <div>
+                    <i class="icon-undo bigger-110"></i>
+                    @Html.ActionLink("Quay Lại", "Index")
+                </div><!-- /.row-fluid -->
+
+            </div>
+
+        }
+        @*<div class="text-center">
+            <div>
+                |
+                
+            </div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaMon }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

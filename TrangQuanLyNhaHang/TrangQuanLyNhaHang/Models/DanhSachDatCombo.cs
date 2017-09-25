@@ -14,11 +14,13 @@ namespace TrangQuanLyNhaHang.Models
     
     public partial class DanhSachDatCombo
     {
-        public int MaComBo { get; set; }
         public int MaDatBan { get; set; }
+        public int MaCombo { get; set; }
+        public Nullable<int> KieuDatBan { get; set; }
         public Nullable<int> SoLuong { get; set; }
     
         public virtual DatBan DatBan { get; set; }
         public virtual GoiCombo GoiCombo { get; set; }
+        public virtual KieuDatBan KieuDatBan1 { get; set; }
     }
 }

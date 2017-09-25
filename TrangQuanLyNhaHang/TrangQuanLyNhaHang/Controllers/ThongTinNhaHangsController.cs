@@ -17,7 +17,7 @@ namespace TrangQuanLyNhaHang.Controllers
         // GET: ThongTinNhaHangs
         public ActionResult Index()
         {
-            var thongTinNhaHangs = db.ThongTinNhaHangs.Include(t => t.TaiKhoan);
+            var thongTinNhaHangs = db.ThongTinNhaHangs;
             return View(thongTinNhaHangs.ToList());
         }
 

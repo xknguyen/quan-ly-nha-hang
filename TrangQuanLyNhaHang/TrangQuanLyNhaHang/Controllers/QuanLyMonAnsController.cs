@@ -22,7 +22,15 @@ namespace TrangQuanLyNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 5;
-            var monAns = db.MonAns.Include(m => m.LoaiMon1);
+            //using (db)
+            //{
+            //    var lop = db.MonAns.ToList();
+            //    foreach (var id in QuanLyMonAnsController)
+            //    {
+            //        Console.WriteLine(id.);
+            //    }
+            //}
+            var monAns = db.MonAns;
             return View(monAns.ToList().OrderBy(n => n.TenMon).ToPagedList(pageNumber, pageSize));
         }
         // Ajax POST: /Checkout/UseShippingAddress/5
@@ -35,7 +43,7 @@ namespace TrangQuanLyNhaHang.Controllers
         {
             using (NhaHangEntities db = new NhaHangEntities())
             {
-                var monAnList = db.MonAns.OrderBy(a => a.LoaiMon1.TenLoai).ToList<MonAn>();
+                var monAnList = db.MonAns.ToList<MonAn>();
                 return Json(new { data = monAnList }, JsonRequestBehavior.AllowGet);
             }
         }

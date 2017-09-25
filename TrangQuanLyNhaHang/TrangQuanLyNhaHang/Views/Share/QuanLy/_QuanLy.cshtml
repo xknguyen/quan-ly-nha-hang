@@ -338,8 +338,7 @@
 
                         <b class="arrow icon-angle-down"></b>
                     </a>
-
-                    <ul class="submenu">
+        @*<ul class="submenu">
                         <li>
                             <a href="elements.html">
                                 <i class="icon-double-angle-right"></i>
@@ -417,7 +416,7 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul>*@
                 </li>
 
                 <li>
@@ -428,25 +427,10 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    @* <ul class="submenu">
-                            <!--<li>
-                                <a href="tables.html">
-                                    <i class="icon-double-angle-right"></i>
-                                    Simple &amp; Dynamic
-                                </a>
-                            </li>-->
-
-                            @*<li>
-                                <a href="jqgrid.html">
-                                    <i class="icon-double-angle-right"></i>
-                                    Tùy Chỉnh
-                                </a>
-                            </li>
-                        </ul>*@
                 </li>
 
                 <li>
-                    <a href="@Url.Action("Index","DatBans")" class="dropdown-toggle">
+                    <a href="@Url.Action("Index", "DanhSachMonDatBans")" class="dropdown-toggle">
                         <i class="icon-edit"></i>
                         <span class="menu-text"> Quản lý Đặt Bàn </span>
 
@@ -485,18 +469,18 @@
                 </li>
 
                 <li>
-                    <a href="widgets.html">
+                    <a href="@Url.Action("Index","TaiKhoans")">
                         <i class="icon-list-alt"></i>
                         <span class="menu-text"> Quản Lý Tài Khoản</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="calendar.html">
+                    <a href="@Url.Action("Index","GoiComboes")">
                         <i class="icon-calendar"></i>
 
                         <span class="menu-text">
-                            Lịch Đặt bàn
+                            Goi ComBo
                             <span class="badge badge-transparent tooltip-error" title="2&nbsp;Important&nbsp;Events">
                                 <i class="icon-warning-sign red bigger-130"></i>
                             </span>
@@ -504,7 +488,7 @@
                     </a>
                 </li>
 
-                <li>
+                @*<li>
                     <a href="gallery.html">
                         <i class="icon-picture"></i>
                         <span class="menu-text"> Quản Lý hình Ảnh </span>
@@ -562,7 +546,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li>*@
 
             </ul>
 
@@ -659,9 +643,9 @@
     <!-- basic scripts -->
     
     <!--Java-->
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         window.jQuery || document.write("<script src='~/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-    </script>
+    </script>*@
     <script src="~/assets/js/jquery-2.0.3.min.js"></script>
 
     <script type="text/javascript">

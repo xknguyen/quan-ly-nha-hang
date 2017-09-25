@@ -1,82 +1,132 @@
-﻿@model IEnumerable<TrangQuanLyNhaHang.Models.TaiKhoan>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<TrangQuanLyNhaHang.Models.TaiKhoan>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.XacNhanMatKhau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NhoMatKhau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TenNguoiDung)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HinhAnh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoDienThoai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoaiTaiKhoan1.TenLoaiTaiKhoan)
-        </th>
-        <th></th>
-    </tr>
+<div class="row-fluid">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatKhau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.XacNhanMatKhau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhoMatKhau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenNguoiDung)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HinhAnh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoDienThoai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiTaiKhoan1.TenLoaiTaiKhoan)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaTaiKhoan }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaTaiKhoan }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaTaiKhoan })
-        </td>
-    </tr>
-}
+    <div class="table-header">
+        Danh sách Tai Khoan
+    </div>
 
-</table>
+    <div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+        <div class="row-fluid">
+            <div class="span6">
+                <div id="sample-table-2_length" class="dataTables_length">
+                    <label>
+                        Display
+                       <select size="1" name="sample-table-2_length" aria-controls="sample-table-2">
+                            <option value="5" selected="selected">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> records
+                    </label>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="dataTables_filter" id="sample-table-2_filter">
+                    <label>Search: <input type="text" aria-controls="sample-table-2"></label>
+                </div>
+            </div>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().MatKhau)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().XacNhanMatKhau)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().NhoMatKhau)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().TenNguoiDung)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().HinhAnh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().DiaChi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().SoDienThoai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().LoaiTaiKhoan1.TenLoaiTaiKhoan)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.XacNhanMatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhoMatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNguoiDung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HinhAnh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiTaiKhoan1.TenLoaiTaiKhoan)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaTaiKhoan }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MaTaiKhoan }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaTaiKhoan })*@
+                        <i class="icon-pencil bigger-130 green">@Html.ActionLink("Sua", "Edit", new { id = item.MaTaiKhoan })</i> ||
+                        <i class="icon-zoom-in grey"> @Html.ActionLink("ThongTin", "Details", new { id = item.MaTaiKhoan })</i> ||
+                        <i class="icon-trash bigger-130 red">@Html.ActionLink("Xoa", "Delete", new { id = item.MaTaiKhoan })</i>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="dataTables_paginate paging_bootstrap pagination align-center">
+            @Html.ActionLink("Them Tai Khoan", "Create")
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="dataTables_info" id="sample-table-2_info">
+                    trang@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+                </div>
+            </div>
+            <div class="span6">
+                <div class="dataTables_paginate paging_bootstrap pagination">
+                    <ul>
+                        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }))
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TrangQuanLyNhaHang.Models.DatBan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDatBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayThucHien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoNguoi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaiKhoan.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDatBan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayThucHien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoNguoi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TongTien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaiKhoan.Email)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.MaDatBan }) |*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.MaDatBan }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaDatBan })*@
+        </td>
+    </tr>
+}
+
+</table>

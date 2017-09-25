@@ -1,101 +1,184 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Login Page - Ace Admin</title>
+﻿@*@using (Html.BeginForm("Login","home",FormMethod.Post))
+    {
 
-    <meta name="description" content="User login page" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- basic styles -->
-
-    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
-
-    <!--[if IE 7]>
-      <link rel="stylesheet" href="~/assets/css/font-awesome-ie7.min.css" />
-    <![endif]-->
-    <!-- page specific plugin styles -->
-    <!-- fonts -->
-
-    <link rel="stylesheet" href="~/assets/css/ace-fonts.css" />
-
-    <!-- ace styles -->
-
-    <link rel="stylesheet" href="~/assets/css/ace.min.css" />
-    <link rel="stylesheet" href="~/assets/css/ace-responsive.min.css" />
-    <link rel="stylesheet" href="~/assets/css/ace-skins.min.css" />
-
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="~/assets/css/ace-ie.min.css" />
-    <![endif]-->
-    <!-- inline styles related to this page -->
-    <!-- ace settings handler -->
-
-    <script src="~/assets/js/ace-extra.min.js"></script>
-</head>
-
-<body class="login-layout">
-    <div class="main-container container-fluid">
-        <div class="main-content">
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="login-container">
-                        <div class="row-fluid">
-                            <div class="center">
-                                <h1>
-                                    <i class="icon-leaf green"></i>
-                                    <span class="red">Nhà Hàng</span>
-                                    <span class="white">Ẩn Thực</span>
-                                </h1>
-                                <h4 class="blue">&copy; âsdasav</h4>
-                            </div>
-                        </div>
-                        <div class="position-relative">
-                            
-                                    @RenderBody()
-
-
-                                    <!-- /position-relative -->
-                                </div>
-                            </div>
-                        </div><!-- /.span -->
-        </div><!-- /.row-fluid -->
-    </div>
- </div>
-
-    <script type="text/javascript">
-        window.jQuery || document.write("<script src='~/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-    </script>
-
-    <!-- <![endif]-->
-    <!--[if IE]>
-    <script type="text/javascript">
-     window.jQuery || document.write("<script src='~/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-    </script>
-    <![endif]-->
-
-    <script type="text/javascript">
-        if ("ontouchend" in document) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-    </script>
-    <script src="~/assets/js/bootstrap.min.js"></script>
-
-    <!-- page specific plugin scripts -->
-    <!-- ace scripts -->
-
-    <script src="~/assets/js/ace-elements.min.js"></script>
-    <script src="~/assets/js/ace.min.js"></script>
-
-    <!-- inline scripts related to this page -->
-
-<script type="text/javascript">
-    function show_box(id) {
-        jQuery('.widget-box.visible').removeClass('visible');
-        jQuery('#' + id).addClass('visible');
     }
-</script>
-    @RenderSection("Scripts", required: false)
+        <div id="login-box" class="login-box visible widget-box no-border">
+        <div class="widget-body">
+            <!-- /widget-main -->
+            <div class="widget-main">
+                <h4 class="header blue lighter bigger">
+                    <i class="icon-coffee green"></i>
+                   Vui Lòng Đăng Nhập Tài Khoản
+                </h4>
+
+                <div class="space-6"></div>
+                @using (Html.BeginForm("login", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    if (@ViewBag.Message != null)
+                    {
+                        <div style="border: 1px solid red">
+                            @ViewBag.Message
+                        </div>
+                    }
+                    <table>
+                        <tr>
+                            <td>@Html.LabelFor(a => a.Email)</td>
+                            <td>@Html.TextBoxFor(a => a.Email)</td>
+                            <td>@Html.ValidationMessageFor(a => a.Email)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(a => a.MatKhau)</td>
+                            <td>@Html.PasswordFor(a => a.MatKhau)</td>
+                            <td>@Html.ValidationMessageFor(a => a.MatKhau)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Login" />
+                            </td>
+                        </tr>
+                    </table>
+
+                }
+                @*<form>
+                    <fieldset>
+                        <label>
+                            <span class="block input-icon input-icon-right">
+                                <input type="text" class="span12" placeholder="Email" />
+                                <i class="icon-user"></i>
+                            </span>
+                        </label>
+
+                        <label>
+                            <span class="block input-icon input-icon-right">
+                                <input type="password" class="span12" placeholder="Mat khau" />
+                                <i class="icon-lock"></i>
+                            </span>
+                        </label>
+
+                        <div class="space"></div>
+
+                        <div class="clearfix">
+                            <label class="inline">
+                                <input type="checkbox" class="ace"/>
+                                <span class="lbl">Luu Mat Khau</span>
+                            </label>
+
+                            <button onclick=" return false; " class="width-35 pull-right btn btn-small btn-primary">
+                                <i class="icon-key"></i>
+                                Dang Nhap
+                            </button>
+                        </div>
+
+                        <div class="space-4"></div>
+                    </fieldset>
+                </form>
+                @*<div class="social-or-login center">
+                    <span class="bigger-110">Or Login Using</span>
+                </div>
+
+                <div class="social-login center">
+                    <a class="btn btn-primary" href="www.facebook.com">
+                        <i class="icon-facebook"></i>
+                    </a>
+
+                    <a class="btn btn-info">
+                        <i class="icon-twitter"></i>
+                    </a>
+
+                    <a class="btn btn-danger">
+                        <i class="icon-google-plus"></i>
+                    </a>
+                </div>
+            </div>
+                @*<div class="toolbar clearfix">
+                        <div>
+
+                            <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
+                                <i class="icon-arrow-left"></i>
+                                Quen Mat Khau
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href='DangKy.cshtml' onclick="show_box('signup-box'); return false;" class="user-signup-link">
+                                Dang Ky Tai Khoan
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                        </div>
+                   </div>
+                </div><!-- /widget-body -->
+        </div><!-- /login-box -->
+
+        @*<!-- /forgot-box -->
+
+
+    <!-- /signup-box -->
+    <!-- /position-relative -->*@
+<style>
+    .AdminLogin {
+        margin: 7% 30%;
+        padding: 6% 10%;
+        background: rgb(236, 233, 233);
+    }
+
+    .dashinp {
+        margin-bottom: 10px;
+    }
+
+    .SignIn {
+        text-align: center;
+        padding: 5PX 30PX;
+        background-color: rgb(30, 95, 209);
+        color: #FFF;
+        margin: 10% 0 10% 30%;
+    }
+
+    .forgot {
+        margin-top: 8%;
+        font-size: 14px;
+    }
+</style>
+<html>
+<head>
+    <title>Nha Hang</title>
+    <link href="~/assets/css/admin_stylesheet.css" rel="stylesheet" />
+
+</head>
+<body>
+    <style>
+        .AdminLogin {
+            margin: 7% 30%;
+            padding: 6% 10%;
+            background: rgb(236, 233, 233);
+        }
+
+        .dashinp {
+            margin-bottom: 10px;
+        }
+
+        .SignIn {
+            text-align: center;
+            padding: 5PX 30PX;
+            background-color: rgb(30, 95, 209);
+            color: #FFF;
+            margin: 10% 0 10% 30%;
+        }
+
+        .forgot {
+            margin-top: 8%;
+            font-size: 14px;
+        }
+    </style>
+    @RenderBody()
+
+
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 </body>
 </html>
+

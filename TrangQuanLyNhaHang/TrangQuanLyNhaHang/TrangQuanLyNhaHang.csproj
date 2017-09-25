@@ -140,6 +140,7 @@
     <Content Include="assets\css\ace-responsive.min.css" />
     <Content Include="assets\css\ace-skins.min.css" />
     <Content Include="assets\css\ace.min.css" />
+    <Content Include="assets\css\admin_stylesheet.css" />
     <Content Include="assets\css\bootstrap-editable.css" />
     <Content Include="assets\css\bootstrap-responsive.min.css" />
     <Content Include="assets\css\bootstrap-timepicker.css" />
@@ -184,16 +185,6 @@
     <Content Include="assets\css\select2.png" />
     <Content Include="assets\css\select2x2.png" />
     <Content Include="assets\css\ui.jqgrid.css" />
-    <Content Include="assets\css\uncompressed\ace-ie.css" />
-    <Content Include="assets\css\uncompressed\ace-responsive.css" />
-    <Content Include="assets\css\uncompressed\ace-skins.css" />
-    <Content Include="assets\css\uncompressed\ace.css" />
-    <Content Include="assets\css\uncompressed\bootstrap-responsive.css" />
-    <Content Include="assets\css\uncompressed\bootstrap.css" />
-    <Content Include="assets\css\uncompressed\chosen.css" />
-    <Content Include="assets\css\uncompressed\font-awesome-ie7.css" />
-    <Content Include="assets\css\uncompressed\font-awesome.css" />
-    <Content Include="assets\css\uncompressed\jquery-ui-1.10.3.custom.css" />
     <Content Include="assets\font\fontawesome-webfont.svg" />
     <Content Include="assets\images\back_disabled.png" />
     <Content Include="assets\images\back_enabled.png" />
@@ -502,8 +493,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="scripts\ai.0.22.9-build00167.js" />
-    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -512,27 +501,42 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="scripts\ai.0.22.9-build00167.js" />
+    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="scripts\jquery-1.10.2.min.map" />
-    <None Include="scripts\jquery-1.12.4.intellisense.js" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="scripts\jquery-1.12.4.js" />
     <Content Include="scripts\jquery-1.12.4.min.js" />
     <Content Include="scripts\jquery-ui-1.12.1.js" />
     <Content Include="scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="scripts\jquery.min.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Content\GoiComboesController.cs" />
     <Compile Include="Controllers\BinhLuansController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\DanhSachDatComboesController.cs" />
     <Compile Include="Controllers\DanhSachMonDatBansController.cs" />
+    <Compile Include="Controllers\DatBansController.cs" />
+    <Compile Include="Controllers\GoiComboesController.cs" />
+    <Compile Include="Controllers\KhongGianNhaHangsController.cs" />
     <Compile Include="Controllers\QuanLyMonAnsController.cs" />
     <Compile Include="Controllers\TaiKhoansController.cs" />
     <Compile Include="Controllers\ThongTinNhaHangsController.cs" />
@@ -594,9 +598,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuKien.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoan.cs">
@@ -673,16 +674,7 @@
     <Content Include="assets\font\fontawesome-webfont.ttf" />
     <Content Include="assets\font\fontawesome-webfont.woff" />
     <Content Include="assets\font\FontAwesome.otf" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Share\DangNhap\_Login.cshtml" />
-    <Content Include="Views\DangNhap\Index.cshtml" />
-    <Content Include="Views\DangNhap\QuenMK.cshtml" />
     <Content Include="Views\Share\QuanLy\_QuanLy.cshtml" />
     <Content Include="Views\TaiKhoans\Create.cshtml" />
     <Content Include="Views\TaiKhoans\Delete.cshtml" />
@@ -699,12 +691,6 @@
     <Content Include="Views\QuanLyMonAns\Details.cshtml" />
     <Content Include="Views\QuanLyMonAns\Edit.cshtml" />
     <Content Include="Views\QuanLyMonAns\Index.cshtml" />
-    <Content Include="scripts\jquery-1.12.4.min.map" />
-    <Content Include="Views\GoiComboes\Create.cshtml" />
-    <Content Include="Views\GoiComboes\Delete.cshtml" />
-    <Content Include="Views\GoiComboes\Details.cshtml" />
-    <Content Include="Views\GoiComboes\Edit.cshtml" />
-    <Content Include="Views\GoiComboes\Index.cshtml" />
     <Content Include="Views\ThongTinNhaHangs\Create.cshtml" />
     <Content Include="Views\ThongTinNhaHangs\Delete.cshtml" />
     <Content Include="Views\ThongTinNhaHangs\Details.cshtml" />
@@ -720,8 +706,25 @@
     <Content Include="Views\DanhSachMonDatBans\Details.cshtml" />
     <Content Include="Views\DanhSachMonDatBans\Edit.cshtml" />
     <Content Include="Views\DanhSachMonDatBans\Index.cshtml" />
-    <Content Include="Views\DangNhap\DangKy.cshtml" />
-    <Content Include="Views\DangNhap\Login.cshtml" />
+    <Content Include="Views\GoiComboes\Create.cshtml" />
+    <Content Include="Views\GoiComboes\Delete.cshtml" />
+    <Content Include="Views\GoiComboes\Details.cshtml" />
+    <Content Include="Views\GoiComboes\Edit.cshtml" />
+    <Content Include="Views\GoiComboes\Index.cshtml" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="scripts\jquery-1.12.4.min.map" />
+    <Content Include="Views\KhongGianNhaHangs\Create.cshtml" />
+    <Content Include="Views\KhongGianNhaHangs\Delete.cshtml" />
+    <Content Include="Views\KhongGianNhaHangs\Details.cshtml" />
+    <Content Include="Views\KhongGianNhaHangs\Edit.cshtml" />
+    <Content Include="Views\KhongGianNhaHangs\Index.cshtml" />
+    <Content Include="Views\DatBans\Create.cshtml" />
+    <Content Include="Views\DatBans\Delete.cshtml" />
+    <Content Include="Views\DatBans\Details.cshtml" />
+    <Content Include="Views\DatBans\Edit.cshtml" />
+    <Content Include="Views\DatBans\Index.cshtml" />
+    <Content Include="Views\DangNhap\Index.cshtml" />
+    <Content Include="Views\DangNhap\DangKi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -731,6 +734,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\TaiKhoan\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

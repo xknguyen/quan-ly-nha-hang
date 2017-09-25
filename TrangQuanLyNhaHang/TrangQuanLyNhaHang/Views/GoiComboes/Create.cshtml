@@ -5,64 +5,89 @@
     Layout = "~/Views/Share/QuanLy/_QuanLy.cshtml";
 }
 
-<h2>Create</h2>
+<div class="form-horizontal">
+    <div class="page-content">
+        <div class="page-header position-relative">
+            <h1>
+                Them Goi ComBo
+                @*<small>
+                        <i class="icon-double-angle-right"></i>
+                        Common form elements and layouts
+                    </small>*@
+            </h1>
+        </div><!-- /.page-header -->
+       
+        <div class="row-fluid">
+            <div class="span12 form-horizontal">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>GoiCombo</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenComBo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenComBo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenComBo, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-actionsl">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.TenComBo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.TenComBo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenComBo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.GioiThieu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GioiThieu, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GioiThieu, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SoLanDat, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLanDat, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoLanDat, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.GioiThieu, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.GioiThieu, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GioiThieu, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.SoLanDat, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.SoLanDat, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SoLanDat, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-actions no-color">
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <i class="icon-ok bigger-110">
+                                    <input type="submit" value="Thêm Combo" class="btn btn-default "/>
+                                </i>
+                            </div>
+                            <div>
+                                <i class="icon-undo bigger-110">
+                                    @Html.ActionLink("Quay Lại", "Index")
+                                </i>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    
+                }
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+               
+
+   

@@ -93,27 +93,4 @@
     </div>
 </div>
 
-  
-@*<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>*@
 
-@*@section script{
-<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $('.delete-link').click(function (e) {
-            var a_href = $(this).attr('href'); /* Lấy giá trị của thuộc tính href */
-            e.preventDefault(); /* Không thực hiện action mặc định */
-            $.ajax({ /* Gửi request lên server */
-                url: a_href, /* Nội dung trong Delete.cshtml cụ thể là deleteModal div được server trả về */
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) { /* Sau khi nhận được giá */
-                    $('.body-content').prepend(data); /* body-content div (định nghĩa trong _Layout.cshtml) sẽ thêm deleteModal div vào dưới cùng */
-                    $('#deleteModal').modal('show'); /* Hiển thị deleteModal div dưới kiểu modal */
-                }
-            });
-        });
-    </script>*@
-    
-}
