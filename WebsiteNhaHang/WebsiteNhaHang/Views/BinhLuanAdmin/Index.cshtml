@@ -1,0 +1,61 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<WebsiteNhaHang.Models.BinhLuan>
+
+@{
+    ViewBag.Title = "Danh Sach binh luan";
+    Layout = "~/Views/layout/Admin/_QuanLy.cshtml";
+}
+
+<div class="row-fluid margin-bottom">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().TaiKhoan.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().NgayDang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().BinhLuan1)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaiKhoan.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BinhLuan1)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.MaCuaBinhLuan }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaCuaBinhLuan })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="dataTables_info" id="sample-table-2_info">
+                Trang :@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+            </div>
+        </div>
+        <div class="span6">
+            <div class="dataTables_paginate paging_bootstrap pagination">
+                <ul>
+                    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }))
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -158,7 +158,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\business-casual.css" />
+    <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\style.default.css" />
     <Content Include="Content\datetime\build\jquery.datetimepicker.full.js" />
     <Content Include="Content\datetime\build\jquery.datetimepicker.full.min.js" />
     <Content Include="Content\datetime\build\jquery.datetimepicker.min.css" />
@@ -167,9 +173,11 @@
     <Content Include="Content\datetime\jquery.datetimepicker.js" />
     <Content Include="Content\datetime\jquery.datetimepicker.min.js" />
     <Content Include="Content\datetime\jquery.js" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\favicon.ico" />
@@ -211,7 +219,6 @@
     <Content Include="Content\img\nha bep.jpg" />
     <Content Include="Content\img\nhatren2.jpg" />
     <Content Include="Content\img\nuoc ngot.jpg" />
-    <Content Include="Content\img\shirt.gif" />
     <Content Include="Content\img\slide-1.jpg" />
     <Content Include="Content\img\slide-2.jpg" />
     <Content Include="Content\img\slide-3.jpg" />
@@ -330,15 +337,26 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\charts-custom.js" />
+    <Content Include="scripts\charts-home.js" />
+    <Content Include="scripts\front.js" />
     <Content Include="scripts\giohang.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery.cookie.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
@@ -356,18 +374,29 @@
     <Content Include="scripts\respond.js" />
     <Content Include="scripts\respond.min.js" />
     <None Include="scripts\_references.js" />
+    <Content Include="scripts\tether.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BinhLuanAdminController.cs" />
     <Compile Include="Controllers\BinhLuanController.cs" />
+    <Compile Include="Controllers\ComboAdminController.cs" />
     <Compile Include="Controllers\ComboController.cs" />
     <Compile Include="Controllers\DatBanController.cs" />
     <Compile Include="Controllers\GioiThieuController.cs" />
+    <Compile Include="Controllers\KhongGianNhaHangAdminController.cs" />
+    <Compile Include="Controllers\KhuyenMaiAdminController.cs" />
     <Compile Include="Controllers\KhuyenMaiSukienController.cs" />
+    <Compile Include="Controllers\MonAnAdminController.cs" />
+    <Compile Include="Controllers\MonAnsController.cs" />
+    <Compile Include="Controllers\SuKiensAdminController.cs" />
+    <Compile Include="Controllers\TaiKhoanAdminController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
+    <Compile Include="Controllers\ThongTinNhaHangAdminController.cs" />
     <Compile Include="Controllers\ThucDonController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
+    <Compile Include="Controllers\TuyenDungAdminController.cs" />
     <Compile Include="Controllers\TuyenDungController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -520,6 +549,23 @@
     <Content Include="Views\DatBan\GioHang.cshtml" />
     <Content Include="Views\DatBan\tongSoLuong.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\layout\Admin\_DangNhap.cshtml" />
+    <Content Include="Views\layout\Admin\_QuanLy.cshtml" />
+    <Content Include="Views\BinhLuanAdmin\Index.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\Create.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\DangNhap.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\DanhSachTaikhoan.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\Delete.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\Edit.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\TaiKhoan.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\TaiKhoanChiTiet.cshtml" />
+    <Content Include="Views\BinhLuanAdmin\Details.cshtml" />
+    <Content Include="Views\BinhLuanAdmin\Delete.cshtml" />
+    <Content Include="Views\GoiComboAdmin\Index.cshtml" />
+    <Content Include="Views\GoiComboAdmin\Create.cshtml" />
+    <Content Include="Views\GoiComboAdmin\Delete.cshtml" />
+    <Content Include="Views\GoiComboAdmin\Edit.cshtml" />
+    <Content Include="Views\KhongGianNhaHangAdmin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
