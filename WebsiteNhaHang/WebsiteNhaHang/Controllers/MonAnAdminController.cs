@@ -22,7 +22,7 @@ namespace WebsiteNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 5;
-            var monAns = db.MonAns;
+            var monAns = db.MonAn;
             return View(monAns.ToList().OrderBy(n => n.TenMon).ToPagedList(pageNumber, pageSize));
         }
         // Ajax POST: /Checkout/UseShippingAddress/5
@@ -35,7 +35,7 @@ namespace WebsiteNhaHang.Controllers
         {
             using (NhaHangEntities db = new NhaHangEntities())
             {
-                var monAnList = db.MonAns.ToList<MonAn>();
+                var monAnList = db.MonAn.ToList<MonAn>();
                 return Json(new { data = monAnList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -56,7 +56,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MonAn monAn = db.MonAns.Find(id);
+            MonAn monAn = db.MonAn.Find(id);
             if (monAn == null)
             {
                 return HttpNotFound();
@@ -67,7 +67,7 @@ namespace WebsiteNhaHang.Controllers
         // GET: QuanLyMonAns/Create
         public ActionResult Create()
         {
-            ViewBag.LoaiMon = new SelectList(db.LoaiMons, "MaLoai", "TenLoai");
+            ViewBag.LoaiMon = new SelectList(db.LoaiMon, "MaLoai", "TenLoai");
             return View();
         }
 
@@ -80,12 +80,12 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.MonAns.Add(monAn);
+                db.MonAn.Add(monAn);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LoaiMon = new SelectList(db.LoaiMons, "MaLoai", "TenLoai", monAn.LoaiMon);
+            ViewBag.LoaiMon = new SelectList(db.LoaiMon, "MaLoai", "TenLoai", monAn.LoaiMon);
             return View(monAn);
         }
 
@@ -96,12 +96,12 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MonAn monAn = db.MonAns.Find(id);
+            MonAn monAn = db.MonAn.Find(id);
             if (monAn == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LoaiMon = new SelectList(db.LoaiMons, "MaLoai", "TenLoai", monAn.LoaiMon);
+            ViewBag.LoaiMon = new SelectList(db.LoaiMon, "MaLoai", "TenLoai", monAn.LoaiMon);
             return View(monAn);
         }
 
@@ -118,16 +118,20 @@ namespace WebsiteNhaHang.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LoaiMon = new SelectList(db.LoaiMons, "MaLoai", "TenLoai", monAn.LoaiMon);
+            ViewBag.LoaiMon = new SelectList(db.LoaiMon, "MaLoai", "TenLoai", monAn.LoaiMon);
             return View(monAn);
         }
         public ActionResult Delete(int? id)
         {
+            if (Convert.ToInt32(Session["LoaiTK"]) == 3)
+            {
+                return RedirectToAction("Index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MonAn monAn = db.MonAns.Find(id);
+            MonAn monAn = db.MonAn.Find(id);
             if (monAn == null)
             {
                 return HttpNotFound();
@@ -140,8 +144,8 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MonAn monAn = db.MonAns.Find(id);
-            db.MonAns.Remove(monAn);
+            MonAn monAn = db.MonAn.Find(id);
+            db.MonAn.Remove(monAn);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -12,28 +12,28 @@ namespace WebsiteNhaHang.Controllers
         // GET: GioiThieu
         public ActionResult KhongGianNhaHang()
         {   
-            return View(db.LoaiKhongGianNhaHangs.OrderBy(n=>n.TenLoai).ToList());
+            return View(db.LoaiKhongGianNhaHang.OrderBy(n=>n.TenLoai).ToList());
         }
 
         public PartialViewResult AnhGioiThieu(int lanHien)
         {
-            return PartialView(db.KhongGianNhaHangs.Take(lanHien).OrderBy(n=>n.NgayDang).ToList());
+            return PartialView(db.KhongGianNhaHang.Take(lanHien).OrderBy(n=>n.NgayDang).ToList());
         }
         public PartialViewResult AnhGioiThieuSuKien(int lanHien)
         {
-            return PartialView(db.KhongGianNhaHangs.Take(lanHien).OrderByDescending(n => n.NgayDang).ToList());
+            return PartialView(db.KhongGianNhaHang.Take(lanHien).OrderByDescending(n => n.NgayDang).ToList());
         }
         public ActionResult ThongTinNhaHang()
         {            
-            return View(db.ThongTinNhaHangs.ToList());
+            return View(db.ThongTinNhaHang.ToList());
         }
         public ActionResult ThongTinNhaHang1()
         {
-            return View(db.ThongTinNhaHangs.ToList());
+            return View(db.ThongTinNhaHang.ToList());
         }
         public PartialViewResult TrangDangNhap()
         {
-            return PartialView(db.ThongTinNhaHangs.ToList());
+            return PartialView(db.ThongTinNhaHang.ToList());
         }
     }
 }

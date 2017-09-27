@@ -17,10 +17,10 @@ namespace WebsiteNhaHang.Controllers
 
         // GET: SuKiensAdmin
         public ActionResult Index(int? page)
-        {
+        {         
             int pageNumber = (page ?? 1);
             int pageSize = 5;
-            var suKien = db.SuKiens.Include(s => s.TaiKhoan);
+            var suKien = db.SuKien.Include(s => s.TaiKhoan);
             return View(suKien.ToList().ToPagedList(pageNumber, pageSize));
         }
 
@@ -31,7 +31,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SuKien suKien = db.SuKiens.Find(id);
+            SuKien suKien = db.SuKien.Find(id);
             if (suKien == null)
             {
                 return HttpNotFound();
@@ -42,7 +42,7 @@ namespace WebsiteNhaHang.Controllers
         // GET: SuKiensAdmin/Create
         public ActionResult Create()
         {
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email");
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email");
             return View();
         }
 
@@ -55,12 +55,12 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SuKiens.Add(suKien);
+                db.SuKien.Add(suKien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", suKien.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", suKien.NguoiDang);
             return View(suKien);
         }
 
@@ -71,12 +71,12 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SuKien suKien = db.SuKiens.Find(id);
+            SuKien suKien = db.SuKien.Find(id);
             if (suKien == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", suKien.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", suKien.NguoiDang);
             return View(suKien);
         }
 
@@ -93,7 +93,7 @@ namespace WebsiteNhaHang.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", suKien.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", suKien.NguoiDang);
             return View(suKien);
         }
 
@@ -104,7 +104,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SuKien suKien = db.SuKiens.Find(id);
+            SuKien suKien = db.SuKien.Find(id);
             if (suKien == null)
             {
                 return HttpNotFound();
@@ -117,8 +117,8 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SuKien suKien = db.SuKiens.Find(id);
-            db.SuKiens.Remove(suKien);
+            SuKien suKien = db.SuKien.Find(id);
+            db.SuKien.Remove(suKien);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

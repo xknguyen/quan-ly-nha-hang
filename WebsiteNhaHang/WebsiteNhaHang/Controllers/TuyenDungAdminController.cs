@@ -23,7 +23,7 @@ namespace TrangAdmin.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 5;
-            var tuyenDung = db.TuyenDungs.Include(t => t.TaiKhoan);
+            var tuyenDung = db.TuyenDung.Include(t => t.TaiKhoan);
             return View(tuyenDung.ToList().ToPagedList(pageNumber, pageSize));
         }
 
@@ -34,7 +34,7 @@ namespace TrangAdmin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+            TuyenDung tuyenDung = db.TuyenDung.Find(id);
             if (tuyenDung == null)
             {
                 return HttpNotFound();
@@ -45,7 +45,11 @@ namespace TrangAdmin.Controllers
         // GET: TuyenDungAdmin/Create
         public ActionResult Create()
         {
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email");
+            if (Session["LoaiTK"] == null)
+            {
+                return Redirect("Index");
+            }
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email");
             return View();
         }
 
@@ -58,12 +62,12 @@ namespace TrangAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TuyenDungs.Add(tuyenDung);
+                db.TuyenDung.Add(tuyenDung);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", tuyenDung.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", tuyenDung.NguoiDang);
             return View(tuyenDung);
         }
 
@@ -74,12 +78,12 @@ namespace TrangAdmin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+            TuyenDung tuyenDung = db.TuyenDung.Find(id);
             if (tuyenDung == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", tuyenDung.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", tuyenDung.NguoiDang);
             return View(tuyenDung);
         }
 
@@ -96,18 +100,22 @@ namespace TrangAdmin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", tuyenDung.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", tuyenDung.NguoiDang);
             return View(tuyenDung);
         }
 
         // GET: TuyenDungAdmin/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["LoaiTK"] == null)
+            {
+                return Redirect("Index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+            TuyenDung tuyenDung = db.TuyenDung.Find(id);
             if (tuyenDung == null)
             {
                 return HttpNotFound();
@@ -120,8 +128,8 @@ namespace TrangAdmin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
-            db.TuyenDungs.Remove(tuyenDung);
+            TuyenDung tuyenDung = db.TuyenDung.Find(id);
+            db.TuyenDung.Remove(tuyenDung);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

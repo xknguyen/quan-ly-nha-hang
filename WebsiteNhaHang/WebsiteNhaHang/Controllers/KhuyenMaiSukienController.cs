@@ -13,24 +13,24 @@ namespace WebsiteNhaHang.Controllers
         // GET: KhuyenMai
         public ActionResult KhuyenMai()
         {   
-            return View(db.KhuyenMais.OrderBy(n => n.NgayDang).ToList());
+            return View(db.KhuyenMai.OrderBy(n => n.NgayDang).ToList());
         }
         public ActionResult SuKien()
         {
-            return PartialView(db.SuKiens.OrderBy(n => n.NgayDang).ToList());
+            return PartialView(db.SuKien.OrderBy(n => n.NgayDang).ToList());
         }
         public ActionResult DemSuKien_KhuyenMai()
         {
-            ViewBag.dem= db.KhuyenMais.Count() + db.SuKiens.Count();
+            ViewBag.dem= db.KhuyenMai.Count() + db.SuKien.Count();
             return PartialView();
         }
         public PartialViewResult AnhGioiThieu()
         {
-            return  PartialView(db.KhuyenMais.Take(2).ToList());
+            return  PartialView(db.KhuyenMai.Take(2).ToList());
         }
         public PartialViewResult AnhSuKien()
         {       
-            return PartialView(db.SuKiens.Take(2).ToList());
+            return PartialView(db.SuKien.Take(2).ToList());
         }
     }
 }

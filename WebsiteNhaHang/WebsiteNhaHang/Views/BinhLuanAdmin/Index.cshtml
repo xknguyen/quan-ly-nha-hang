@@ -3,28 +3,39 @@
 @model PagedList.PagedList<WebsiteNhaHang.Models.BinhLuan>
 
 @{
-    ViewBag.Title = "Danh Sach binh luan";
+    ViewBag.Title = "Danh Sách Bình Luận";
     Layout = "~/Views/layout/Admin/_QuanLy.cshtml";
+    int i = 0;
+    {
+        <style>
+            #XoaBL {
+                display: none;
+            }
+        </style>
+    }
 }
 
-<div class="row-fluid margin-bottom">
+<div class="row-fluid margin-bottom ml-3">
     <table class="table">
         <tr>
-            <th>
+            <th>#</th>
+            <th style="width:30%">
                 @Html.DisplayNameFor(model => model.First().TaiKhoan.Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().NgayDang)
             </th>
-            <th>
+            <th style="width:40%">
                 @Html.DisplayNameFor(model => model.First().BinhLuan1)
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
-            {
+        {
+            i++;
             <tr>
+                <td>@i</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TaiKhoan.Email)
                 </td>
@@ -37,14 +48,14 @@
 
 
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.MaCuaBinhLuan }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MaCuaBinhLuan })
+                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.MaCuaBinhLuan })
+                    <p id="XoaBL">@Html.ActionLink("Xóa", "Delete", new { id = item.MaCuaBinhLuan })</p>
                 </td>
             </tr>
         }
 
     </table>
-    <div class="row-fluid">
+    <div class="row-fluid ml-2">
         <div class="span6">
             <div class="dataTables_info" id="sample-table-2_info">
                 Trang :@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount

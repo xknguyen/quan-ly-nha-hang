@@ -17,25 +17,25 @@ namespace WebsiteNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 6;
-            return View(db.MonAns.ToList().OrderBy(n => n.TenMon).ToPagedList(pageNumber, pageSize));
+            return View(db.MonAn.ToList().OrderBy(n => n.TenMon).ToPagedList(pageNumber, pageSize));
         }
         public PartialViewResult MonDuocDatNhieu()
         {
-            return PartialView(db.MonAns.Take(3).OrderBy(n => n.SoLuotDat).ToList());
+            return PartialView(db.MonAn.Take(3).OrderBy(n => n.SoLuotDat).ToList());
         }
         public PartialViewResult LoaiMonAn()
         {
-            return PartialView(db.LoaiMons.ToList());
+            return PartialView(db.LoaiMon.ToList());
         }
         public ViewResult MonAnTheoLoai(int maLoai = 0)
         {
-            LoaiMon lm = db.LoaiMons.SingleOrDefault(n => n.MaLoai == maLoai);
+            LoaiMon lm = db.LoaiMon.SingleOrDefault(n => n.MaLoai == maLoai);
             if (lm == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            List<MonAn> lstMonAn = db.MonAns.Where(n => n.LoaiMon == maLoai).OrderBy(n => n.TenMon).ToList();
+            List<MonAn> lstMonAn = db.MonAn.Where(n => n.LoaiMon == maLoai).OrderBy(n => n.TenMon).ToList();
             if (lstMonAn.Count == 0)
             {
                 ViewBag.MonAn = "Không có món ăn nào trong loại này!!";

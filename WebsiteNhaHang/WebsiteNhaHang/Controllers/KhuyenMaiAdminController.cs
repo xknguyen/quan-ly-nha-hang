@@ -20,7 +20,7 @@ namespace WebsiteNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 5;
-            var khuyenMai = db.KhuyenMais.Include(k => k.TaiKhoan);
+            var khuyenMai = db.KhuyenMai.Include(k => k.TaiKhoan);
             return View(khuyenMai.ToList().ToPagedList(pageNumber, pageSize));
         }
 
@@ -31,7 +31,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
+            KhuyenMai khuyenMai = db.KhuyenMai.Find(id);
             if (khuyenMai == null)
             {
                 return HttpNotFound();
@@ -42,7 +42,7 @@ namespace WebsiteNhaHang.Controllers
         // GET: KhuyenMaiAdmin/Create
         public ActionResult Create()
         {
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email");
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email");
             return View();
         }
 
@@ -55,12 +55,12 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.KhuyenMais.Add(khuyenMai);
+                db.KhuyenMai.Add(khuyenMai);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", khuyenMai.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", khuyenMai.NguoiDang);
             return View(khuyenMai);
         }
 
@@ -71,12 +71,12 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
+            KhuyenMai khuyenMai = db.KhuyenMai.Find(id);
             if (khuyenMai == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", khuyenMai.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", khuyenMai.NguoiDang);
             return View(khuyenMai);
         }
 
@@ -93,7 +93,7 @@ namespace WebsiteNhaHang.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", khuyenMai.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", khuyenMai.NguoiDang);
             return View(khuyenMai);
         }
 
@@ -104,7 +104,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
+            KhuyenMai khuyenMai = db.KhuyenMai.Find(id);
             if (khuyenMai == null)
             {
                 return HttpNotFound();
@@ -117,8 +117,8 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
-            db.KhuyenMais.Remove(khuyenMai);
+            KhuyenMai khuyenMai = db.KhuyenMai.Find(id);
+            db.KhuyenMai.Remove(khuyenMai);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

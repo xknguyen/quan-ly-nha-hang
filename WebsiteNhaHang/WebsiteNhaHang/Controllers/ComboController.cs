@@ -17,16 +17,16 @@ namespace WebsiteNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 6;
-            return View(db.GoiComboes.ToList().OrderBy(n => n.TenComBo).ToPagedList(pageNumber, pageSize));
+            return View(db.GoiCombo.ToList().OrderBy(n => n.TenComBo).ToPagedList(pageNumber, pageSize));
         }
         public PartialViewResult ComboDatNhieu()
         {
-            return PartialView(db.GoiComboes.Take(3).OrderBy(n => n.SoLanDat).ToList());
+            return PartialView(db.GoiCombo.Take(3).OrderBy(n => n.SoLanDat).ToList());
         }
 
         public ActionResult DemCombo()
         {
-            ViewBag.DemCombo= db.GoiComboes.Count();
+            ViewBag.DemCombo= db.GoiCombo.Count();
             return View();
         }
         

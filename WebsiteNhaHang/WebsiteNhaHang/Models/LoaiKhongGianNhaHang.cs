@@ -17,13 +17,13 @@ namespace WebsiteNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LoaiKhongGianNhaHang()
         {
-            this.KhongGianNhaHangs = new HashSet<KhongGianNhaHang>();
+            this.KhongGianNhaHang = new HashSet<KhongGianNhaHang>();
         }
     
         public int MaLoaiKhongGian { get; set; }
         public string TenLoai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KhongGianNhaHang> KhongGianNhaHangs { get; set; }
+        public virtual ICollection<KhongGianNhaHang> KhongGianNhaHang { get; set; }
     }
 }

@@ -3,6 +3,14 @@
 @{
     ViewBag.Title = "Thông tin nhà hàng";
     Layout = "~/Views/layout/Admin/_QuanLy.cshtml";
+    if (Convert.ToInt32(Session["LoaiTK"]) == 3)
+    {
+        <style>
+            #SuaThongTin {
+                display: none;
+            }
+        </style>
+    }
 }
 
 <table class="table">
@@ -51,7 +59,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td id="SuaThongTin">
                 @Html.ActionLink("Sửa", "Edit", new { id = item.MaThongTin })
             </td>
         </tr>

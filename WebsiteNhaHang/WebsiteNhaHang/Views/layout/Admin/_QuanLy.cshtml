@@ -7,18 +7,11 @@
     <title>@ViewBag.Title</title>
     <meta name="description" content="">
     <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
-    <!-- Google fonts - Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <!-- theme stylesheet-->
     <link rel="stylesheet" href="~/Content/css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="~/Content/css/custom.css">
-    <!-- Favicon-->
     <link rel="shortcut icon" href="~/Content/img/favicon.ico">
-    <!-- Font Awesome CDN-->
-    <!-- you can replace it by local Font Awesome-->
     <script src="https://use.fontawesome.com/99347ac47f.js"></script>
     <!-- Font Icons CSS-->
     <link rel="stylesheet" href="https://file.myfontastic.com/da58YPMQ7U5HY8Rb6UxkNf/icons.css">
@@ -28,7 +21,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 
-    @if (Convert.ToInt32(Session["LoaiTK"])== 2)
+    @if (Convert.ToInt32(Session["LoaiTK"])== 2|| Session["LoaiTK"]==null)
     {
         <style>
             body{display:none}
@@ -58,7 +51,7 @@
                     <div class="navbar-holder d-flex align-items-center justify-content-between">
                         <!-- Navbar Header-->
                         <div class="navbar-header">
-                            <!-- Navbar Brand --><a href="index.html" class="navbar-brand">
+                            <!-- Navbar Brand --><a href="#" class="navbar-brand">
                                 <div class="brand-text brand-big hidden-lg-down"><span>Ganena </span><strong>Nhat Ban</strong></div>
                                 
                             </a>
@@ -80,24 +73,19 @@
             <!-- Side Navbar -->
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
-                @Html.Action("TaiKhoan","TaiKhoanAdmin")
-                <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+                @Html.Action("TaiKhoan","TaiKhoanAdmin")                
                 <ul class="list-unstyled">
                     <li> <a href="~/TaiKhoanAdmin/TaiKhoanChiTiet"><i class="icon-home"></i>Thông tin tài khoản</a></li>
                     <li> <a href="/MonAnAdmin/Index"> <i class="icon-grid"></i>Món ăn</a></li>
-                    <li> <a href="/GoiComboAdmin/Index"> <i class="fa fa-bar-chart"></i>Gói Combo </a></li>
-                    <li> <a href="/BinhLuanAdmin//Index"> <i class="icon-padnote"></i>Bình Luận</a></li>
+                    <li> <a href="/ComboAdmin/Index"> <i class="fa fa-bar-chart"></i>Gói Combo </a></li>
+                    <li> <a href="/DatBanAdmin/Index"> <i class="icon-padnote"></i>Đặt Bàn</a></li>
+                    <li> <a href="/BinhLuanAdmin/Index"> <i class="icon-padnote"></i>Bình Luận</a></li>
                     <li> <a href="/ThongTinNhaHangAdmin/Index"> <i class="icon-interface-windows"></i>Thông tin nhà hàng</a></li>
                     <li> <a href="/KhongGianNhaHangAdmin/Index"> <i class="icon-interface-windows"></i>Hình ảnh của nhà hàng</a></li>
                     <li id="QuanLyTK"> <a href="/TaiKhoanAdmin/DanhSachTaiKhoan"> <i class="icon-interface-windows"></i>Quản lý tài khoản</a></li>
-                    <li> <a href="/TuyenDungAdmin//Index"> <i class="icon-interface-windows"></i>Tuyển dụng</a></li>
-                    <li>
-                        <a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Khuyến mãi- Sự kiện </a>
-                        <ul id="dashvariants" class="collapse list-unstyled">
-                            <li><a href="/KhuyenMaiAdmin/Index">Quản lý khuyến mãi</a></li>
-                            <li><a href="/SukiensAdmin/Index">Quản lý sự kiện</a></li>
-                        </ul>
-                    </li>
+                    <li> <a href="/TuyenDungAdmin/Index"> <i class="icon-interface-windows"></i>Tuyển dụng</a></li>
+                    <li><a href="/KhuyenMaiAdmin/Index"><i class="icon-interface-windows"></i>Quản lý khuyến mãi</a></li>
+                    <li><a href="/SukiensAdmin/Index"><i class="icon-interface-windows"></i>Quản lý sự kiện</a></li>
                 </ul>
             </nav>
             <div class="content-inner">
@@ -117,7 +105,7 @@
                                 <p>Your company &copy; 2017-2019</p>
                             </div>
                             <div class="col-sm-6 text-right">
-                                <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+                                <p>Design by <a href="https://www.facebook.com/nnvncg" class="external">Group 2</a></p>
                                 <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
                             </div>
                         </div>
@@ -132,8 +120,8 @@
     <script src="~/scripts/bootstrap.min.js"></script>
     <script src="~/scripts/jquery.cookie.js"> </script>
     <script src="~/scripts/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="~/scripts/charts-home.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="~/scripts/charts-home.js"></script>*@
     <script src="~/scripts/front.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
     <!---->
@@ -143,7 +131,18 @@
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+      ga('create', 'UA-XXXXX-X'); ga('send', 'pageview');      
+      function heartBeat() {
+          $.get("/TaiKhoanAdmin/DangNhap", function (data) { });
+          if (Session["LoaiTk"] == null) {
+              window.location.href = '/TaiKhoanAdmin/DangNhap';
+          }
+      }
+
+      $(function () {
+          setInterval("heartBeat()", 1000 * 60); // 100s gửi request một lần
+      });
+        
     </script>
 </body>
 </html>

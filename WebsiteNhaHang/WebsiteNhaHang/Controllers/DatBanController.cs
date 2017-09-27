@@ -28,8 +28,8 @@ namespace WebsiteNhaHang.Controllers
         }
         public ActionResult ThemGioHang(int iMaSp,int iLoaiDat,string strURL)
         {
-            MonAn monAn = db.MonAns.SingleOrDefault(n => n.MaMon == iMaSp);
-            GoiCombo goiCombo = db.GoiComboes.SingleOrDefault(n => n.MaCombo == iMaSp);
+            MonAn monAn = db.MonAn.SingleOrDefault(n => n.MaMon == iMaSp);
+            GoiCombo goiCombo = db.GoiCombo.SingleOrDefault(n => n.MaCombo == iMaSp);
             if (monAn == null&&iLoaiDat==1)
             {
                 Response.StatusCode = 404;
@@ -102,7 +102,7 @@ namespace WebsiteNhaHang.Controllers
         [HttpPost]
         public ActionResult ThanhToan(int soNguoi, DateTime ngayAn)
         {
-            int i = 0; int j = 0;
+            int i = 0;
             if (Session["MaTaiKhoan"] == null)
             {               
                 return Json("Bạn cần đăng nhập trước khi đặt bàn!");
@@ -114,7 +114,7 @@ namespace WebsiteNhaHang.Controllers
             datBan.NgayThucHien = ngayAn;
             datBan.TongTien = TongTien();
             datBan.SoNguoi = soNguoi;
-            db.DatBans.Add(datBan);
+            db.DatBan.Add(datBan);
             db.SaveChanges();
             foreach (var item in lstGioHang)
             {                
@@ -125,7 +125,10 @@ namespace WebsiteNhaHang.Controllers
                     dsMonAn.SoLuong = item.iSoLuong;
                     dsMonAn.MaDatBan = datBan.MaDatBan;
                     dsMonAn.KieuDatBan = 1;
-                    db.DanhSachMonDatBans.Add(dsMonAn);
+                    db.DanhSachMonDatBan.Add(dsMonAn);
+                    var f = db.MonAn.FirstOrDefault(n => n.MaMon == item.iMaSP);
+                    f.SoLuotDat++;
+                    db.MonAn.Add(f);
                     db.SaveChanges();
                 }
                 if (item.iLoaiDat == 2)
@@ -135,15 +138,18 @@ namespace WebsiteNhaHang.Controllers
                     dsCombo.MaCombo = item.iMaSP;
                     dsCombo.KieuDatBan = 2;
                     dsCombo.SoLuong = item.iSoLuong;
-                    db.DanhSachDatComboes.Add(dsCombo);
+                    db.DanhSachDatCombo.Add(dsCombo);
+                    var d = db.GoiCombo.FirstOrDefault(n => n.MaCombo == item.iMaSP);
+                    d.SoLanDat++;
+                    db.GoiCombo.Add(d);
                     db.SaveChanges();
                 }
             }
             string email = Session["EmailDangNhap"].ToString();
-            string nhaHang = db.ThongTinNhaHangs.FirstOrDefault().TenNhaHang;
-            string soDienThoai = db.TaiKhoans.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).SoDienThoai;
-            string diaChi = db.TaiKhoans.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).DiaChi;
-            string nguoiDang = db.TaiKhoans.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).TenNguoiDung;
+            string nhaHang = db.ThongTinNhaHang.FirstOrDefault().TenNhaHang;
+            string soDienThoai = db.TaiKhoan.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).SoDienThoai;
+            string diaChi = db.TaiKhoan.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).DiaChi;
+            string nguoiDang = db.TaiKhoan.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).TenNguoiDung;
             StringBuilder Body = new StringBuilder();
             Body.Append("<p>Cảm ơn quý khách" + nguoiDang+ " đã sử dụng dịch vụ đặt hàng online của nhà hàng " +nhaHang+"</p>");
             Body.Append("<table>");
@@ -157,7 +163,7 @@ namespace WebsiteNhaHang.Controllers
 
             foreach (var item in lstGioHang)
             {
-                string loaiDat = db.KieuDatBans.FirstOrDefault(n => n.MaKieuDatBan == item.iLoaiDat).TenKieuDat;
+                string loaiDat = db.KieuDatBan.FirstOrDefault(n => n.MaKieuDatBan == item.iLoaiDat).TenKieuDat;
                 i++;
                 Body.Append("<tr><td>"+i+ "</td><td>" + loaiDat + "</td><td>" + item.sTenSp + "</td><td><p>&nbsp;&nbsp;" + item.iSoLuong + "</p></td><td>" + item.dThanhTien + " VND &nbsp;</td></tr>");
             }
@@ -165,7 +171,7 @@ namespace WebsiteNhaHang.Controllers
             Body.Append("</table>");
 
             MailMessage mail = new MailMessage();
-            string emaiNhaHang = db.ThongTinNhaHangs.FirstOrDefault().Email;
+            string emaiNhaHang = db.ThongTinNhaHang.FirstOrDefault().Email;
             mail.To.Add(email);
             mail.To.Add(emaiNhaHang);
             mail.From = new MailAddress("Chuotdong1995@gmail.com");

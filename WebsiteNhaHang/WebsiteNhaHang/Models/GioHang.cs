@@ -25,7 +25,7 @@ namespace WebsiteNhaHang.Models
             iLoaiDat = LoaiDat;
             if (LoaiDat == 1)
             {
-                MonAn monAn = db.MonAns.Single(n => n.MaMon == iMaSP);
+                MonAn monAn = db.MonAn.Single(n => n.MaMon == iMaSP);
                 sTenSp = monAn.TenMon;
                 sHinhAnh = monAn.HinhAnh;
                 dDonGia =double.Parse(monAn.Gia.ToString());
@@ -33,7 +33,7 @@ namespace WebsiteNhaHang.Models
             }
             else
             {
-                GoiCombo goiCombo = db.GoiComboes.Single(n => n.MaCombo == iMaSP);
+                GoiCombo goiCombo = db.GoiCombo.Single(n => n.MaCombo == iMaSP);
                 sTenSp = goiCombo.TenComBo;
                 sHinhAnh = goiCombo.HinhAnh;
                 dDonGia = double.Parse(goiCombo.Gia.ToString());

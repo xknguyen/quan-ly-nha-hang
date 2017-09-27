@@ -25,21 +25,21 @@ namespace WebsiteNhaHang.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
-        public virtual DbSet<DanhSachDatCombo> DanhSachDatComboes { get; set; }
-        public virtual DbSet<DanhSachMonDatBan> DanhSachMonDatBans { get; set; }
-        public virtual DbSet<DatBan> DatBans { get; set; }
-        public virtual DbSet<GoiCombo> GoiComboes { get; set; }
-        public virtual DbSet<KieuDatBan> KieuDatBans { get; set; }
-        public virtual DbSet<KhongGianNhaHang> KhongGianNhaHangs { get; set; }
-        public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
-        public virtual DbSet<LoaiKhongGianNhaHang> LoaiKhongGianNhaHangs { get; set; }
-        public virtual DbSet<LoaiMon> LoaiMons { get; set; }
-        public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
-        public virtual DbSet<MonAn> MonAns { get; set; }
-        public virtual DbSet<SuKien> SuKiens { get; set; }
-        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
-        public virtual DbSet<TuyenDung> TuyenDungs { get; set; }
-        public virtual DbSet<ThongTinNhaHang> ThongTinNhaHangs { get; set; }
+        public virtual DbSet<BinhLuan> BinhLuan { get; set; }
+        public virtual DbSet<DanhSachDatCombo> DanhSachDatCombo { get; set; }
+        public virtual DbSet<DanhSachMonDatBan> DanhSachMonDatBan { get; set; }
+        public virtual DbSet<DatBan> DatBan { get; set; }
+        public virtual DbSet<GoiCombo> GoiCombo { get; set; }
+        public virtual DbSet<KieuDatBan> KieuDatBan { get; set; }
+        public virtual DbSet<KhongGianNhaHang> KhongGianNhaHang { get; set; }
+        public virtual DbSet<KhuyenMai> KhuyenMai { get; set; }
+        public virtual DbSet<LoaiKhongGianNhaHang> LoaiKhongGianNhaHang { get; set; }
+        public virtual DbSet<LoaiMon> LoaiMon { get; set; }
+        public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoan { get; set; }
+        public virtual DbSet<MonAn> MonAn { get; set; }
+        public virtual DbSet<SuKien> SuKien { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
+        public virtual DbSet<TuyenDung> TuyenDung { get; set; }
+        public virtual DbSet<ThongTinNhaHang> ThongTinNhaHang { get; set; }
     }
 }

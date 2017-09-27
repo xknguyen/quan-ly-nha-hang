@@ -14,9 +14,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.First().Email)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.First().MatKhau)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.First().TenNguoiDung)
                 </th>
@@ -41,9 +41,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.MatKhau)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.TenNguoiDung)
                     </td>
@@ -82,7 +82,7 @@
             <div class="span6">
                 <div class="dataTables_paginate paging_bootstrap pagination">
                     <ul>
-                        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }))
+                        @Html.PagedListPager(Model, Page => Url.Action("DanhSachTaiKhoan", new { Page = Page }))
                     </ul>
                 </div>
             </div>

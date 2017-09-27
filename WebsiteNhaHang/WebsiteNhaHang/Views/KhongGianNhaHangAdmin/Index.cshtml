@@ -3,12 +3,22 @@
 @model PagedList.PagedList<WebsiteNhaHang.Models.KhongGianNhaHang>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hình Ảnh Giới Thiệu";
     Layout = "~/Views/layout/Admin/_QuanLy.cshtml";
+    int i = 0;
+    if (Convert.ToInt32(Session["LoaiTK"]) == 3)
+    {
+        <style>
+            #XoaKG {
+                display: none;
+            }
+        </style>
+    }
 }
 <div class="row-fluid">
     <table class="table">
         <tr>
+            <th>#</th>
             <th>
                 @Html.DisplayNameFor(model => model.First().TenKhongGian)
             </th>
@@ -32,12 +42,14 @@
 
         @foreach (var item in Model)
         {
+            i++;
             <tr>
+                <td>@i</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenKhongGian)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HinhAnh)
+                    <img src="@Url.Content("~/Content/img/" + item.HinhAnh)" style="width:70%" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.GioiThieu)
@@ -53,7 +65,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Sửa", "Edit", new { id = item.MaKhongGian }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaKhongGian })
+                    <p id="XoaKG">@Html.ActionLink("Xóa", "Delete", new { id = item.MaKhongGian })</p>
                 </td>
             </tr>
         }

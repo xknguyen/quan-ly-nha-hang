@@ -180,13 +180,8 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bg.jpg" />
-    <Content Include="Content\img\favicon.ico" />
-    <Content Include="Content\img\ga.jpg" />
-    <Content Include="Content\img\h2.jpg" />
-    <Content Include="Content\img\hambogo.jpg" />
     <Content Include="Content\img\hinh-the-dep.jpg" />
     <Content Include="Content\img\icon_256.png" />
-    <Content Include="Content\img\images.jpg" />
     <Content Include="Content\img\intro-pic.jpg" />
     <Content Include="Content\img\lau duoi2.jpg" />
     <Content Include="Content\img\lauduoi1.jpg" />
@@ -218,10 +213,7 @@
     <Content Include="Content\img\MonAn\thitnuong.jpg" />
     <Content Include="Content\img\nha bep.jpg" />
     <Content Include="Content\img\nhatren2.jpg" />
-    <Content Include="Content\img\nuoc ngot.jpg" />
     <Content Include="Content\img\slide-1.jpg" />
-    <Content Include="Content\img\slide-2.jpg" />
-    <Content Include="Content\img\slide-3.jpg" />
     <Content Include="Content\img\TaiKhoan\hinh-the-dep.jpg" />
     <Content Include="Content\img\TaiKhoan\images.jpg" />
     <Content Include="Content\img\TaiKhoan\khonghinh.JPG" />
@@ -250,8 +242,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="scripts\ai.0.22.9-build00167.js" />
-    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap-datetimepicker.js" />
     <Content Include="scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
@@ -344,13 +334,19 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Compile Include="Controllers\DatBanAdminController.cs" />
+    <Compile Include="Models\Metadata\BinhLuan.Metadata.cs" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="scripts\charts-custom.js" />
-    <Content Include="scripts\charts-home.js" />
     <Content Include="scripts\front.js" />
-    <Content Include="scripts\giohang.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
@@ -363,16 +359,7 @@
     <None Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="scripts\modernizr-2.6.2.js" />
-    <Content Include="scripts\moment-with-locales.js" />
-    <Content Include="scripts\moment-with-locales.min.js" />
-    <Content Include="scripts\moment.js" />
-    <Content Include="scripts\moment.min.js" />
     <Content Include="scripts\multiple-themes.js" />
-    <Content Include="scripts\respond.js" />
-    <Content Include="scripts\respond.min.js" />
     <None Include="scripts\_references.js" />
     <Content Include="scripts\tether.min.js" />
     <Content Include="Web.config" />
@@ -389,7 +376,6 @@
     <Compile Include="Controllers\KhuyenMaiAdminController.cs" />
     <Compile Include="Controllers\KhuyenMaiSukienController.cs" />
     <Compile Include="Controllers\MonAnAdminController.cs" />
-    <Compile Include="Controllers\MonAnsController.cs" />
     <Compile Include="Controllers\SuKiensAdminController.cs" />
     <Compile Include="Controllers\TaiKhoanAdminController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
@@ -436,6 +422,15 @@
     <Compile Include="Models\LoaiTaiKhoan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\DatBanMetadata.cs" />
+    <Compile Include="Models\Metadata\GoiComboMetadata.cs" />
+    <Compile Include="Models\Metadata\KhongGianNhaHangMetadata.cs" />
+    <Compile Include="Models\Metadata\KhuyenMaiMetadata.cs" />
+    <Compile Include="Models\Metadata\MonAnMetadata.cs" />
+    <Compile Include="Models\Metadata\SuKienMetadata.cs" />
+    <Compile Include="Models\Metadata\TaiKhoanMetadata.cs" />
+    <Compile Include="Models\Metadata\ThongTinNhaHangMetadata.cs" />
+    <Compile Include="Models\Metadata\TuyenDungMetadata.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -539,13 +534,6 @@
     <Content Include="Views\TaiKhoan\SuaTaiKhoan.cshtml" />
     <Content Include="Views\BinhLuan\DanhSachBinhLuan.cshtml" />
     <Content Include="Views\BinhLuan\DangBinhLuan.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\DatBan\GioHang.cshtml" />
     <Content Include="Views\DatBan\tongSoLuong.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
@@ -561,11 +549,31 @@
     <Content Include="Views\TaiKhoanAdmin\TaiKhoanChiTiet.cshtml" />
     <Content Include="Views\BinhLuanAdmin\Details.cshtml" />
     <Content Include="Views\BinhLuanAdmin\Delete.cshtml" />
-    <Content Include="Views\GoiComboAdmin\Index.cshtml" />
-    <Content Include="Views\GoiComboAdmin\Create.cshtml" />
-    <Content Include="Views\GoiComboAdmin\Delete.cshtml" />
-    <Content Include="Views\GoiComboAdmin\Edit.cshtml" />
+    <Content Include="Views\ComboAdmin\Index.cshtml" />
+    <Content Include="Views\ComboAdmin\Create.cshtml" />
+    <Content Include="Views\ComboAdmin\Delete.cshtml" />
+    <Content Include="Views\ComboAdmin\Edit.cshtml" />
     <Content Include="Views\KhongGianNhaHangAdmin\Index.cshtml" />
+    <Content Include="Views\KhongGianNhaHangAdmin\Create.cshtml" />
+    <Content Include="Views\KhongGianNhaHangAdmin\Delete.cshtml" />
+    <Content Include="Views\KhongGianNhaHangAdmin\Edit.cshtml" />
+    <Content Include="Views\MonAnAdmin\Create.cshtml" />
+    <Content Include="Views\MonAnAdmin\Delete.cshtml" />
+    <Content Include="Views\MonAnAdmin\Edit.cshtml" />
+    <Content Include="Views\MonAnAdmin\Index.cshtml" />
+    <Content Include="Views\TaiKhoanAdmin\Edit2.cshtml" />
+    <Content Include="Views\KhuyenMaiAdmin\Create.cshtml" />
+    <Content Include="Views\KhuyenMaiAdmin\Delete.cshtml" />
+    <Content Include="Views\KhuyenMaiAdmin\Edit.cshtml" />
+    <Content Include="Views\KhuyenMaiAdmin\Index.cshtml" />
+    <Content Include="Views\SuKiensAdmin\Create.cshtml" />
+    <Content Include="Views\SuKiensAdmin\Delete.cshtml" />
+    <Content Include="Views\SuKiensAdmin\Edit.cshtml" />
+    <Content Include="Views\SuKiensAdmin\Index.cshtml" />
+    <Content Include="Views\DatBanAdmin\Delete.cshtml" />
+    <Content Include="Views\DatBanAdmin\Index.cshtml" />
+    <Content Include="Views\ThongTinNhaHangAdmin\Edit.cshtml" />
+    <Content Include="Views\ThongTinNhaHangAdmin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

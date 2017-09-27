@@ -48,7 +48,7 @@ namespace WebsiteNhaHang.Controllers
                     tKhoan.HinhAnh =filename;          
                     if (tKhoan.MatKhau==tKhoan.XacNhanMatKhau)
                     { 
-                        db.TaiKhoans.Add(tKhoan);
+                        db.TaiKhoan.Add(tKhoan);
                         db.SaveChanges();
                         ViewBag.ThongBao = "Đăng ký tài khoản thành công!!!";
                     }
@@ -65,7 +65,7 @@ namespace WebsiteNhaHang.Controllers
 
         public bool KiemTra(string email)
         {
-            return db.TaiKhoans.Count(n => n.Email == email) > 0;
+            return db.TaiKhoan.Count(n => n.Email == email) > 0;
         }
         [HttpGet]
         public ActionResult DangNhap()
@@ -79,12 +79,13 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                var v = db.TaiKhoans.FirstOrDefault(x=>x.Email == email && x.MatKhau == matkhau);
+                var v = db.TaiKhoan.FirstOrDefault(x=>x.Email == email && x.MatKhau == matkhau);
                 if (v != null)
                 {
                     Session["MaTaiKhoan"] = v.MaTaiKhoan;
                     Session["EmailDangNhap"] = v.Email;
                     Session["MatKhauDangNhap"] = v.MatKhau;
+                    Session["LoaiTK"] = v.LoaiTaiKhoan;
                     return Redirect("/");
                 }
                 ViewBag.Message = "Nhập sai mật khẩu hoặc email!!";
@@ -113,13 +114,14 @@ namespace WebsiteNhaHang.Controllers
             Session.Remove("EmailDangNhap");
             Session.Remove("MatKhauDangNhap");
             Session.Remove("MaTaiKhoan");
+            Session.Remove("LoaiTK");
             return Redirect("/");
         }
 
         public ActionResult TaiKhoanChiTiet()
         {
             int a = Convert.ToInt32(Session["MaTaiKhoan"]);
-            var tk = db.TaiKhoans.FirstOrDefault(n => n.MaTaiKhoan == a );
+            var tk = db.TaiKhoan.FirstOrDefault(n => n.MaTaiKhoan == a );
             if (tk == null)
             {
                 return RedirectToAction("DangNhap","TaiKhoan");

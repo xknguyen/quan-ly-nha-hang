@@ -16,7 +16,7 @@ namespace WebsiteNhaHang.Controllers
         }
         public ActionResult DanhSachBinhLuan()
         {
-            return View(db.BinhLuans.OrderByDescending(n=>n.NgayDang).Take(15).ToList());
+            return View(db.BinhLuan.OrderByDescending(n=>n.NgayDang).Take(15).ToList());
         }
 
         public PartialViewResult DangBinhLuan()
@@ -37,7 +37,7 @@ namespace WebsiteNhaHang.Controllers
                 int a = Convert.ToInt32(Session["MaTaiKhoan"]);
                 bl.MaTaiKhoan = a;
                 bl.NgayDang = DateTime.Now;
-                db.BinhLuans.Add(bl);
+                db.BinhLuan.Add(bl);
                 db.SaveChanges();
             }
             return PartialView();

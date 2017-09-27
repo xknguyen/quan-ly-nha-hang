@@ -20,7 +20,7 @@ namespace WebsiteNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 5;
-            var khongGianNhaHang = db.KhongGianNhaHangs.Include(k => k.LoaiKhongGianNhaHang).Include(k => k.TaiKhoan);
+            var khongGianNhaHang = db.KhongGianNhaHang.Include(k => k.LoaiKhongGianNhaHang).Include(k => k.TaiKhoan);
             return View(khongGianNhaHang.ToList().ToPagedList(pageNumber, pageSize));
         }
 
@@ -31,7 +31,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHangs.Find(id);
+            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHang.Find(id);
             if (khongGianNhaHang == null)
             {
                 return HttpNotFound();
@@ -42,8 +42,8 @@ namespace WebsiteNhaHang.Controllers
         // GET: KhongGianNhaHangAdmin/Create
         public ActionResult Create()
         {
-            ViewBag.LoaiKhongGian = new SelectList(db.KhongGianNhaHangs, "MaLoaiKhongGian", "TenLoai");
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email");
+            ViewBag.LoaiKhongGian = new SelectList(db.KhongGianNhaHang, "MaLoaiKhongGian", "TenLoai");
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email");
             return View();
         }
 
@@ -56,13 +56,13 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.KhongGianNhaHangs.Add(khongGianNhaHang);
+                db.KhongGianNhaHang.Add(khongGianNhaHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LoaiKhongGian = new SelectList(db.LoaiKhongGianNhaHangs, "MaLoaiKhongGian", "TenLoai", khongGianNhaHang.LoaiKhongGian);
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", khongGianNhaHang.NguoiDang);
+            ViewBag.LoaiKhongGian = new SelectList(db.LoaiKhongGianNhaHang, "MaLoaiKhongGian", "TenLoai", khongGianNhaHang.LoaiKhongGian);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", khongGianNhaHang.NguoiDang);
             return View(khongGianNhaHang);
         }
 
@@ -73,13 +73,13 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHangs.Find(id);
+            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHang.Find(id);
             if (khongGianNhaHang == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LoaiKhongGian = new SelectList(db.LoaiKhongGianNhaHangs, "MaLoaiKhongGian", "TenLoai", khongGianNhaHang.LoaiKhongGian);
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", khongGianNhaHang.NguoiDang);
+            ViewBag.LoaiKhongGian = new SelectList(db.LoaiKhongGianNhaHang, "MaLoaiKhongGian", "TenLoai", khongGianNhaHang.LoaiKhongGian);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", khongGianNhaHang.NguoiDang);
             return View(khongGianNhaHang);
         }
 
@@ -96,19 +96,23 @@ namespace WebsiteNhaHang.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LoaiKhongGian = new SelectList(db.LoaiKhongGianNhaHangs, "MaLoaiKhongGian", "TenLoai", khongGianNhaHang.LoaiKhongGian);
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", khongGianNhaHang.NguoiDang);
+            ViewBag.LoaiKhongGian = new SelectList(db.LoaiKhongGianNhaHang, "MaLoaiKhongGian", "TenLoai", khongGianNhaHang.LoaiKhongGian);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", khongGianNhaHang.NguoiDang);
             return View(khongGianNhaHang);
         }
 
         // GET: KhongGianNhaHangAdmin/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Convert.ToInt32(Session["LoaiTK"]) == 3)
+            {
+                return RedirectToAction("Index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHangs.Find(id);
+            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHang.Find(id);
             if (khongGianNhaHang == null)
             {
                 return HttpNotFound();
@@ -121,8 +125,8 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHangs.Find(id);
-            db.KhongGianNhaHangs.Remove(khongGianNhaHang);
+            KhongGianNhaHang khongGianNhaHang = db.KhongGianNhaHang.Find(id);
+            db.KhongGianNhaHang.Remove(khongGianNhaHang);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

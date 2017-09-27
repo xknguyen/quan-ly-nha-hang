@@ -17,7 +17,7 @@ namespace TrangQuanLyNhaHang.Controllers
         // GET: ThongTinNhaHangs
         public ActionResult Index()
         {
-            var thongTinNhaHangs = db.ThongTinNhaHangs;
+            var thongTinNhaHangs = db.ThongTinNhaHang;
             return View(thongTinNhaHangs.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace TrangQuanLyNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ThongTinNhaHang thongTinNhaHang = db.ThongTinNhaHangs.Find(id);
+            ThongTinNhaHang thongTinNhaHang = db.ThongTinNhaHang.Find(id);
             if (thongTinNhaHang == null)
             {
                 return HttpNotFound();
@@ -40,16 +40,20 @@ namespace TrangQuanLyNhaHang.Controllers
         // GET: ThongTinNhaHangs/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Convert.ToInt32(Session["LoaiTK"]) == 3|| Session["LoaiTK"]==null)
+            {
+                return RedirectToAction("Index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ThongTinNhaHang thongTinNhaHang = db.ThongTinNhaHangs.Find(id);
+            ThongTinNhaHang thongTinNhaHang = db.ThongTinNhaHang.Find(id);
             if (thongTinNhaHang == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", thongTinNhaHang.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", thongTinNhaHang.NguoiDang);
             return View(thongTinNhaHang);
         }
 
@@ -60,27 +64,15 @@ namespace TrangQuanLyNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaThongTin,NguoiDang,URLMap,TenNhaHang,DiaChi,Email,SoDienThoai1,SoDienThoai2,ThongTinKhac")] ThongTinNhaHang thongTinNhaHang)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(thongTinNhaHang).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.NguoiDang = new SelectList(db.TaiKhoans, "MaTaiKhoan", "Email", thongTinNhaHang.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.TaiKhoan, "MaTaiKhoan", "Email", thongTinNhaHang.NguoiDang);
             return View(thongTinNhaHang);
-        }
-
-        // GET: ThongTinNhaHangs/Delete/5
-
-        // POST: ThongTinNhaHangs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ThongTinNhaHang thongTinNhaHang = db.ThongTinNhaHangs.Find(id);
-            db.ThongTinNhaHangs.Remove(thongTinNhaHang);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

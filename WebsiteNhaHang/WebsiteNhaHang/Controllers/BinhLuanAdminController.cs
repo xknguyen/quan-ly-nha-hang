@@ -20,7 +20,7 @@ namespace WebsiteNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize= 5;
-            var binhLuans = db.BinhLuans.Include(b => b.TaiKhoan);
+            var binhLuans = db.BinhLuan.Include(b => b.TaiKhoan);
             return View(binhLuans.ToList().ToPagedList(pageNumber, pageSize));
         }
 
@@ -31,7 +31,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
+            BinhLuan binhLuan = db.BinhLuan.Find(id);
             if (binhLuan == null)
             {
                 return HttpNotFound();
@@ -40,11 +40,15 @@ namespace WebsiteNhaHang.Controllers
         }
         public ActionResult Delete(int? id)
         {
+            if (Convert.ToInt32(Session["LoaiTK"]) == 3)
+            {
+                return RedirectToAction("Index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
+            BinhLuan binhLuan = db.BinhLuan.Find(id);
             if (binhLuan == null)
             {
                 return HttpNotFound();
@@ -57,8 +61,8 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
-            db.BinhLuans.Remove(binhLuan);
+            BinhLuan binhLuan = db.BinhLuan.Find(id);
+            db.BinhLuan.Remove(binhLuan);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

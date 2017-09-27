@@ -11,7 +11,7 @@ using PagedList;
 using PagedList.Mvc;
 namespace WebsiteNhaHang.Controllers
 {
-    public class GoiComboAdminController : Controller
+    public class ComboAdminController : Controller
     {
         private NhaHangEntities db = new NhaHangEntities();
 
@@ -20,7 +20,7 @@ namespace WebsiteNhaHang.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 5;
-            return View(db.GoiComboes.ToList().ToPagedList(pageNumber, pageSize));
+            return View(db.GoiCombo.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: GoiComboes/Create
@@ -38,7 +38,7 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.GoiComboes.Add(goiCombo);
+                db.GoiCombo.Add(goiCombo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -53,7 +53,7 @@ namespace WebsiteNhaHang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GoiCombo goiCombo = db.GoiComboes.Find(id);
+            GoiCombo goiCombo = db.GoiCombo.Find(id);
             if (goiCombo == null)
             {
                 return HttpNotFound();
@@ -80,11 +80,15 @@ namespace WebsiteNhaHang.Controllers
         // GET: GoiComboes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Convert.ToInt32(Session["LoaiTK"]) == 3)
+            {
+                return RedirectToAction("Index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GoiCombo goiCombo = db.GoiComboes.Find(id);
+            GoiCombo goiCombo = db.GoiCombo.Find(id);
             if (goiCombo == null)
             {
                 return HttpNotFound();
@@ -97,8 +101,8 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GoiCombo goiCombo = db.GoiComboes.Find(id);
-            db.GoiComboes.Remove(goiCombo);
+            GoiCombo goiCombo = db.GoiCombo.Find(id);
+            db.GoiCombo.Remove(goiCombo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

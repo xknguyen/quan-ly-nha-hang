@@ -17,13 +17,13 @@ namespace WebsiteNhaHang.Controllers
             ViewBag.Dem = 0;
             int pageNumber = (page ?? 1);
             int pageSize = 10;
-            return View(db.TuyenDungs.OrderByDescending(n => n.MaTuyenDung).ToList().ToPagedList(pageNumber, pageSize));
+            return View(db.TuyenDung.OrderByDescending(n => n.MaTuyenDung).ToList().ToPagedList(pageNumber, pageSize));
 
         }
 
         public PartialViewResult DemTuyenDung()
         {
-            ViewBag.DemTuyenDung = db.TuyenDungs.Count();
+            ViewBag.DemTuyenDung = db.TuyenDung.Count();
             return PartialView();
         }
 

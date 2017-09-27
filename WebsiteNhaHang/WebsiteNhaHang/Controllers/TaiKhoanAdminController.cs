@@ -25,7 +25,7 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                var v = db.TaiKhoans.FirstOrDefault(x => x.Email == email && x.MatKhau == matkhau);
+                var v = db.TaiKhoan.FirstOrDefault(x => x.Email == email && x.MatKhau == matkhau);
                 if (v != null&&v.LoaiTaiKhoan!=2)
                 {
                     Session["EmailDangNhap"] = v.Email;
@@ -40,8 +40,6 @@ namespace WebsiteNhaHang.Controllers
         }
         public RedirectResult DangXuat()
         {
-            //Session["EmailDangNhap"] = null;
-            //Session["MatKhauDangNhap"] = null;
             Session.Remove("EmailDangNhap");
             Session.Remove("MaTaiKhoan");
             Session.Remove("LoaiTK");
@@ -50,49 +48,50 @@ namespace WebsiteNhaHang.Controllers
         }
         public ActionResult TaiKhoan()
         {
-            string email = Session["EmailDangNhap"].ToString();
-            var v = db.TaiKhoans.FirstOrDefault(n => n.Email == email);
-            //var v = db.TaiKhoans.FirstOrDefault(n => n.MaTaiKhoan == Int32.Parse(Session["MaTaiKhoan"].ToString()));
-            if (v == null)
+            //if (KiemTraDangNhap() == false)
+            //{
+            //    return RedirectToAction("DangNhap", "TaiKhoanAdmin");
+            //}
+            if (Session["EmailDangNhap"] == null)
             {
                 return null;
             }
+            string email = Session["EmailDangNhap"].ToString();
+            var v = db.TaiKhoan.FirstOrDefault(n => n.Email == email);
+            //var v = db.TaiKhoans.FirstOrDefault(n => n.MaTaiKhoan == Int32.Parse(Session["MaTaiKhoan"].ToString()));
+            
             return View(v);
         }
-        public ViewResult TaiKhoanChiTiet()
+        public ActionResult TaiKhoanChiTiet()
         {
-            int c = Convert.ToInt32(Session["MaTaiKhoan"]);
-            int b = Convert.ToInt32(Session["LoaiTK"]);
-            if (Session["MaTaiKhoan"] == null||b==2)
+            if (KiemTraDangNhap() == false)
             {
-                Response.StatusCode = 404;
-                return null;
+                return RedirectToAction("DangNhap", "TaiKhoanAdmin");
             }
-            var a=db.TaiKhoans.FirstOrDefault(n => n.MaTaiKhoan == c);
+            int c = Convert.ToInt32(Session["MaTaiKhoan"]);         
+            var a=db.TaiKhoan.FirstOrDefault(n => n.MaTaiKhoan == c);
             return View(a);
         }
-        public ViewResult DanhSachTaikhoan(int? page)
+        public ActionResult DanhSachTaikhoan(int? page)
         {
-            if (KiemTraLoai())
+            if (KiemTraDangNhap() == false)
             {
-                int pageNumber = (page ?? 1);
-                int pageSize = 5;
-                var taiKhoan = db.TaiKhoans;
-                return View(taiKhoan.ToList().OrderBy(n => n.MaTaiKhoan).ToPagedList(pageNumber, pageSize));
+                return RedirectToAction("DangNhap", "TaiKhoanAdmin");
             }
-            Response.StatusCode = 404;
-            return null;
+            int pageNumber = (page ?? 1);
+            int pageSize = 5;
+            var taiKhoan = db.TaiKhoan;
+            return View(taiKhoan.ToList().OrderBy(n => n.MaTaiKhoan).ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Create()
         {
-            if (KiemTraLoai())
+            if (KiemTraDangNhap() == false)
             {
-                ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan");
-                return View();
+                return RedirectToAction("DangNhap", "TaiKhoanAdmin");
             }
-            Response.StatusCode = 404;
-            return null;
-            
+
+            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan");
+                return View();
         }
 
         // POST: TaiKhoans/Create
@@ -104,28 +103,32 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TaiKhoans.Add(taiKhoan);
+                db.TaiKhoan.Add(taiKhoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
+            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
             return View(taiKhoan);
         }
 
         // GET: TaiKhoans/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null&&KiemTraLoai()==false)
+            if (KiemTraDangNhap() == false)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoanAdmin");
+            }
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            TaiKhoan taiKhoan = db.TaiKhoan.Find(id);
             if (taiKhoan == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
+            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
             return View(taiKhoan);
         }
 
@@ -136,24 +139,63 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaTaiKhoan,Email,MatKhau,XacNhanMatKhau,NhoMatKhau,LoaiTaiKhoan,TenNguoiDung,HinhAnh,DiaChi,SoDienThoai")] TaiKhoan taiKhoan)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(taiKhoan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("DanhSachTaikhoan");
             }
-            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
+            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
             return View(taiKhoan);
         }
-
-        // GET: TaiKhoans/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Edit2(int? id)
         {
-            if (id == null && KiemTraLoai() == false)
+            if (KiemTraDangNhap() == false)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoanAdmin");
+            }
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            TaiKhoan taiKhoan = db.TaiKhoan.Find(id);
+            if (taiKhoan == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
+            return View(taiKhoan);
+        }
+
+        // POST: TaiKhoans/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit2([Bind(Include = "MaTaiKhoan,Email,MatKhau,XacNhanMatKhau,NhoMatKhau,LoaiTaiKhoan,TenNguoiDung,HinhAnh,DiaChi,SoDienThoai")] TaiKhoan taiKhoan)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(taiKhoan).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("DanhSachTaikhoan");
+            }
+            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
+            return View(taiKhoan);
+        }
+        // GET: TaiKhoans/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (KiemTraDangNhap() == false)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoanAdmin");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TaiKhoan taiKhoan = db.TaiKhoan.Find(id);
             if (taiKhoan == null)
             {
                 return HttpNotFound();
@@ -166,15 +208,18 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
-            db.TaiKhoans.Remove(taiKhoan);
+            TaiKhoan taiKhoan = db.TaiKhoan.Find(id);
+            db.TaiKhoan.Remove(taiKhoan);
             db.SaveChanges();
             return RedirectToAction("DanhSachTaikhoan");
         }
-        public bool KiemTraLoai()
+        public bool KiemTraDangNhap()
         {
-            bool a = int.Parse(Session["LoaiTK"].ToString()) == 1;
-            return a;
+            if (Session["MaTaiKhoan"] == null || Convert.ToInt32(Session["LoaiTK"]) == 2)
+            {
+                return false;
+            }
+            return true;
         }
         protected override void Dispose(bool disposing)
         {

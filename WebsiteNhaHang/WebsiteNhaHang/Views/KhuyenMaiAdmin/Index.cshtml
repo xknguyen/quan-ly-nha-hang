@@ -62,10 +62,11 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TaiKhoan.Email)
-                </td>
-                <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.MaKhuyenMai }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.MaKhuyenMai })
+                </td>
+                <td>
+                    
                 </td>
             </tr>
         }
