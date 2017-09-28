@@ -1,7 +1,7 @@
 ﻿@using WebsiteNhaHang.Models
 @model List<LoaiKhongGianNhaHang>
 @{
-    ViewBag.Title = "GioiThieu";
+    ViewBag.Title = "Giới thiệu về nhà hàng";
     Layout = "~/Views/layout/NguoiDung.cshtml";
 }
 
@@ -19,11 +19,11 @@
         </h2>
         <hr class="divider">
         <div class="row">
-            @foreach (var khongGian in item.KhongGianNhaHangs)
+            @foreach (var khongGian in item.KhongGianNhaHang)
             {
                 <div class="col-sm-6">
                     <div class="card" style="width: auto">
-                        <img class="card-img-top" src="@Url.Content("~/Content/img/"+@khongGian.HinhAnh)">
+                        <img class="card-img-top" src="@Url.Content("~/Content/img/"+@khongGian.HinhAnh)" style="height:30rem">
                         <div class="card-body">
                             <p class="card-text">@khongGian.GioiThieu</p>
                         </div>

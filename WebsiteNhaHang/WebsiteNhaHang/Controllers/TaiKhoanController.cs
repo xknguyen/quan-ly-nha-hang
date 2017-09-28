@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebsiteNhaHang.Md5;
 using WebsiteNhaHang.Models;
 namespace WebsiteNhaHang.Controllers
 {
@@ -23,18 +24,23 @@ namespace WebsiteNhaHang.Controllers
         [HttpPost]
         public ActionResult DangKy(TaiKhoan tKhoan,HttpPostedFileBase file)
         {
-            var filename = Path.GetFileName(file.FileName);            
+            var filename="";
+            if (file != null)
+            {
+                filename = Path.GetFileName(file.FileName);  
+            }
+                      
             if (ModelState.IsValid)
             {
-                if (filename != null)
+                if (filename != "")
                 {
-                    var path = Path.Combine(Server.MapPath("~/Content/img/TaiKhoan"), filename);
+                    var path = Path.Combine(Server.MapPath("~/Content/img/TaiKhoan/"), filename);
 
-                    if (System.IO.File.Exists(path))
+                    while(System.IO.File.Exists(path))
                     {
-                        filename = "1"+filename;
-                        path = Path.Combine(Server.MapPath("~/Content/img/TaiKhoan"),filename);
-                    }                    
+                        filename = "1"+filename;                        
+                    }
+                    path = Path.Combine(Server.MapPath("~/Content/img/TaiKhoan/"), filename);
                     file.SaveAs(path);
                 }
                 if (KiemTra(tKhoan.Email))
@@ -45,9 +51,12 @@ namespace WebsiteNhaHang.Controllers
                 {   
                     tKhoan.LoaiTaiKhoan = 2;
                     tKhoan.NhoMatKhau = false;
-                    tKhoan.HinhAnh =filename;          
+                    tKhoan.HinhAnh =filename;
+                    tKhoan.MatKhau = Encryptor.MD5Hash(tKhoan.MatKhau);
+                    tKhoan.XacNhanMatKhau = Encryptor.MD5Hash(tKhoan.XacNhanMatKhau);
                     if (tKhoan.MatKhau==tKhoan.XacNhanMatKhau)
-                    { 
+                    {
+                        
                         db.TaiKhoan.Add(tKhoan);
                         db.SaveChanges();
                         ViewBag.ThongBao = "Đăng ký tài khoản thành công!!!";
@@ -79,12 +88,12 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                var v = db.TaiKhoan.FirstOrDefault(x=>x.Email == email && x.MatKhau == matkhau);
+                matkhau = Encryptor.MD5Hash(matkhau);
+                var v = db.TaiKhoan.FirstOrDefault(x=>x.Email == email && x.MatKhau ==matkhau );
                 if (v != null)
                 {
                     Session["MaTaiKhoan"] = v.MaTaiKhoan;
                     Session["EmailDangNhap"] = v.Email;
-                    Session["MatKhauDangNhap"] = v.MatKhau;
                     Session["LoaiTK"] = v.LoaiTaiKhoan;
                     return Redirect("/");
                 }
@@ -112,7 +121,6 @@ namespace WebsiteNhaHang.Controllers
             //Session["EmailDangNhap"] = null;
             //Session["MatKhauDangNhap"] = null;
             Session.Remove("EmailDangNhap");
-            Session.Remove("MatKhauDangNhap");
             Session.Remove("MaTaiKhoan");
             Session.Remove("LoaiTK");
             return Redirect("/");

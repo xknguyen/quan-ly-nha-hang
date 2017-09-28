@@ -3,7 +3,7 @@
 @model PagedList.IPagedList<GoiCombo>
 
 @{
-    ViewBag.Title = "Công";
+    ViewBag.Title = "Gói Combo của nhà hàng";
     Layout = "~/Views/layout/NguoiDung.cshtml";
     string a = "text-primary";
 }
@@ -61,7 +61,7 @@
                                         <hr/>
                                         <h3 class="modal-title">Danh sách các món trong Combo</h3>
                                         <table class="table">
-                                            @foreach (var monAn in item.MonAns)
+                                            @foreach (var monAn in item.MonAn)
                                             {
                                                 i++;
                                                 <tr>

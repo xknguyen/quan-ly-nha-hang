@@ -8,6 +8,8 @@ using PagedList;
 using PagedList.Mvc;
 using System.Data.Entity;
 using System.Net;
+using WebsiteNhaHang.Md5;
+using System.IO;
 
 namespace WebsiteNhaHang.Controllers
 {
@@ -25,6 +27,7 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
+                matkhau = Encryptor.MD5Hash(matkhau);
                 var v = db.TaiKhoan.FirstOrDefault(x => x.Email == email && x.MatKhau == matkhau);
                 if (v != null&&v.LoaiTaiKhoan!=2)
                 {
@@ -33,7 +36,7 @@ namespace WebsiteNhaHang.Controllers
                     Session["LoaiTK"] = v.LoaiTaiKhoan;
                     return Redirect("/TaiKhoanAdmin/TaiKhoanChiTiet");
                 }
-                ViewBag.Message = "Nhập sai mật khẩu hoặc email!!";
+                ModelState.AddModelError("", "Email hoặc mật khẩu sai!!");
             }
 
             return View();
@@ -78,6 +81,10 @@ namespace WebsiteNhaHang.Controllers
             {
                 return RedirectToAction("DangNhap", "TaiKhoanAdmin");
             }
+            if(Convert.ToInt32(Session["LoaiTK"]) == 3)
+            {
+                return RedirectToAction("TaiKhoanChiTiet", "TaiKhoanAdmin");
+            }
             int pageNumber = (page ?? 1);
             int pageSize = 5;
             var taiKhoan = db.TaiKhoan;
@@ -103,6 +110,7 @@ namespace WebsiteNhaHang.Controllers
         {
             if (ModelState.IsValid)
             {
+                taiKhoan.MatKhau = Encryptor.MD5Hash(taiKhoan.MatKhau);
                 db.TaiKhoan.Add(taiKhoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -142,6 +150,7 @@ namespace WebsiteNhaHang.Controllers
 
             if (ModelState.IsValid)
             {
+                taiKhoan.MatKhau = Encryptor.MD5Hash(taiKhoan.MatKhau);
                 db.Entry(taiKhoan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("DanhSachTaikhoan");
@@ -163,8 +172,7 @@ namespace WebsiteNhaHang.Controllers
             if (taiKhoan == null)
             {
                 return HttpNotFound();
-            }
-            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
+            }            
             return View(taiKhoan);
         }
 
@@ -175,13 +183,15 @@ namespace WebsiteNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit2([Bind(Include = "MaTaiKhoan,Email,MatKhau,XacNhanMatKhau,NhoMatKhau,LoaiTaiKhoan,TenNguoiDung,HinhAnh,DiaChi,SoDienThoai")] TaiKhoan taiKhoan)
         {
+
             if (ModelState.IsValid)
             {
+                taiKhoan.MatKhau = Encryptor.MD5Hash(taiKhoan.MatKhau);
                 db.Entry(taiKhoan).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("DanhSachTaikhoan");
+                return Redirect("/TaiKhoanAdmin/TaiKhoanChiTiet");
             }
-            ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
+            //ViewBag.LoaiTaiKhoan = new SelectList(db.LoaiTaiKhoan, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", taiKhoan.LoaiTaiKhoan);
             return View(taiKhoan);
         }
         // GET: TaiKhoans/Delete/5

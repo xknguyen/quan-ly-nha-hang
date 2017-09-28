@@ -13,10 +13,11 @@ namespace WebsiteNhaHang.Models
         {
             public int MaTaiKhoan { get; set; }
             [Required(ErrorMessage = "{0} không được để trống!")]
+            [DataType(DataType.EmailAddress)]
             public string Email { get; set; }
             [Display(Name = "Mật Khẩu")]
             [DataType(DataType.Password)]
-            [StringLength(20, MinimumLength = 6, ErrorMessage = "Mật khẩu dài từ 6 đến 20 ký tự!")]
+            [StringLength(40, MinimumLength = 6, ErrorMessage = "Mật khẩu dài từ 6 đến 20 ký tự!")]
             public string MatKhau { get; set; }
             [DataType(DataType.Password)]
             [Display(Name = "Xác Nhận Mật Khẩu")]
@@ -33,8 +34,9 @@ namespace WebsiteNhaHang.Models
             [Display(Name = "Địa Chỉ")]
             public string DiaChi { get; set; }
             [Display(Name = "Số Diện Thoại")]
-            [RegularExpression(@"^\(?([0-9]*)$", ErrorMessage = "{0} không hợp lệ!")]
-            [StringLength(11, MinimumLength = 10, ErrorMessage = "Số điện thoại không hợp lệ!")]
+            [DataType(DataType.PhoneNumber)]
+            //[RegularExpression(@"^\(?([0-9]*?)$", ErrorMessage = "{0} không hợp lệ!")]
+            [StringLength(11, ErrorMessage = "Số điện thoại không hợp lệ!")]
             public string SoDienThoai { get; set; }
         }
     }

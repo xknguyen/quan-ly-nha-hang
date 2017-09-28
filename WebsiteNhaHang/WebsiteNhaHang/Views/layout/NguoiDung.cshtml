@@ -10,7 +10,7 @@
     <meta name="keywords" content="Những món ăn Nhật ngon nhất">
     <meta name="author" content="Internship CongNV">
     <link rel="shortcut icon" href="~/Content/img/favicon.ico" /> 
-    <title>GANEYA Nhật Bản</title>
+    <title>@ViewBag.Title</title>
 
     <!-- Bootstrap core CSS -->
     <script src="~/scripts/jquery-1.10.2.min.js"></script>
@@ -60,31 +60,31 @@
     @Html.Action("ThongTinNhaHang1", "GioiThieu")
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4" >
-        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ganeya Nhật Bản</a>
+        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/">Ganeya Nhật Bản</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item active px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/TrangChu/Index"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+                    <a class="nav-link text-uppercase text-expanded" href="/"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded " href="~/GioiThieu/KhongGianNhaHang">Giới Thiệu</a>
+                    <a class="nav-link text-uppercase text-expanded " href="~/GioiThieu">Giới Thiệu</a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/ThucDon/ThucDon">Thực Đơn</a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/ThucDon">Thực Đơn</a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/Combo/GoiCombo">Gói Combo <span class="badge badge-secondary">@Html.Action("DemCombo","Combo")</span></a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/Combo">Gói Combo <span class="badge badge-secondary">@Html.Action("DemCombo","Combo")</span></a>
 
                 </li>
 
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/KhuyenMaiSuKien/KhuyenMai">Khuyến Mãi - Sự Kiện <span class="badge badge-secondary">@Html.Action("DemSuKien_KhuyenMai", "KhuyenMaiSuKien")</span></a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/KhuyenMaiSuKien">Khuyến Mãi - Sự Kiện <span class="badge badge-secondary">@Html.Action("DemSuKien_KhuyenMai", "KhuyenMaiSuKien")</span></a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase text-expanded" href="~/TuyenDung/TuyenDung">Tuyển Dụng <span class="badge badge-secondary">@Html.Action("DemTuyenDung", "TuyenDung")</span></a>
+                    <a class="nav-link text-uppercase text-expanded" href="~/TuyenDung">Tuyển Dụng <span class="badge badge-secondary">@Html.Action("DemTuyenDung", "TuyenDung")</span></a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <div class="dropdown show">

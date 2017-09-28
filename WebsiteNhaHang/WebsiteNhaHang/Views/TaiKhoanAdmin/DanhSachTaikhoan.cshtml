@@ -20,7 +20,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.First().TenNguoiDung)
                 </th>
-                <th>
+                <th style="width:20%">
                     @Html.DisplayNameFor(model => model.First().HinhAnh)
                 </th>
                 <th>
@@ -48,7 +48,7 @@
                         @Html.DisplayFor(modelItem => item.TenNguoiDung)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.HinhAnh)
+                        <img src="@Url.Content("~/Content/img/TaiKhoan/" + item.HinhAnh)" style="width:70%" />
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DiaChi)
