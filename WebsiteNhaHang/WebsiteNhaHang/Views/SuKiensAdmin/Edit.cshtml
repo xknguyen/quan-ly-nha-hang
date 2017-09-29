@@ -9,7 +9,7 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal mt-2 ml-3">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaSuKien)
 
@@ -68,6 +68,6 @@
     </div>
 }
 
-<div>
+<div class="ml-3">
     @Html.ActionLink("Về trang quản lý", "Index")
 </div>

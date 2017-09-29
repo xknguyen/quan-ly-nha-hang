@@ -188,12 +188,12 @@
     <Content Include="Content\img\lautren1.jpg" />
     <Content Include="Content\img\MatTien.jpg" />
     <Content Include="Content\img\MonAn\1479785947_348_Ngon-ngon-món-nướng-Nhật-Bản-ở-Sài-Gòn-ngày-đông.jpg" />
-    <Content Include="Content\img\MonAn\Akami%28 Cá ngừ đỏ sẫm%29.jpg" />
-    <Content Include="Content\img\MonAn\Ba rọi cuộn cần nước.jpg" />
+    <Content Include="Content\img\MonAn\Akami.jpg" />
+    <Content Include="Content\img\MonAn\Baroi.jpg" />
     <Content Include="Content\img\MonAn\BoNuong.jpg" />
     <Content Include="Content\img\MonAn\cach-lam-sushi-ca-hoi12.jpg" />
     <Content Include="Content\img\MonAn\cach-lam-sushi-dua-chuot-5.jpg" />
-    <Content Include="Content\img\MonAn\Chutoro%28Cá ngừ đỏ hồng%29.jpg" />
+    <Content Include="Content\img\MonAn\Chutoro.jpg" />
     <Content Include="Content\img\MonAn\ComboGiaDinh.jpg" />
     <Content Include="Content\img\MonAn\combosushi0.jpg" />
     <Content Include="Content\img\MonAn\KhuyenMai-Sukien\Khuyenmai.jpg" />
@@ -201,8 +201,8 @@
     <Content Include="Content\img\MonAn\luon_nuong.jpg" />
     <Content Include="Content\img\MonAn\MonNuong.png" />
     <Content Include="Content\img\MonAn\nuong-nhat-ban-1.jpg" />
-    <Content Include="Content\img\MonAn\Otoro%28Bụng cá ngừ%29.jpg" />
-    <Content Include="Content\img\MonAn\Phi lê cá basa.jpg" />
+    <Content Include="Content\img\MonAn\Otoro.jpg" />
+    <Content Include="Content\img\MonAn\philecabasa.jpg" />
     <Content Include="Content\img\MonAn\sake-ikura-don-com-voi-ca-hoi-va-trung-ca-hoi-song.jpg" />
     <Content Include="Content\img\MonAn\shabu-shabu.jpg" />
     <Content Include="Content\img\MonAn\Sukiyaki.jpg" />
@@ -344,6 +344,7 @@
     <Compile Include="Controllers\DatBanAdminController.cs" />
     <Compile Include="Md5\Encryptor.cs" />
     <Compile Include="Models\Metadata\BinhLuan.Metadata.cs" />
+    <None Include="Properties\PublishProfiles\NhaHang.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />

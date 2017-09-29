@@ -18,6 +18,10 @@ namespace WebsiteNhaHang.Controllers
         // GET: GoiComboes
         public ActionResult Index(int? page)
         {
+            if (Session["LoaiTK"] == null || Convert.ToInt32(Session["LoaiTK"]) == 2)
+            {
+                return Redirect("/TaiKhoanAdmin/DangNhap");
+            }
             int pageNumber = (page ?? 1);
             int pageSize = 5;
             return View(db.GoiCombo.ToList().ToPagedList(pageNumber, pageSize));

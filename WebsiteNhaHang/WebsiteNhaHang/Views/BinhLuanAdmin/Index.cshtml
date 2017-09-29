@@ -6,6 +6,7 @@
     ViewBag.Title = "Danh Sách Bình Luận";
     Layout = "~/Views/layout/Admin/_QuanLy.cshtml";
     int i = 0;
+    if (Convert.ToInt32(Session["LoaiTK"]) == 3)
     {
         <style>
             #XoaBL {

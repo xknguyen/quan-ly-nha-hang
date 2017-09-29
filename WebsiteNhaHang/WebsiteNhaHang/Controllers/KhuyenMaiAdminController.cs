@@ -18,6 +18,10 @@ namespace WebsiteNhaHang.Controllers
         // GET: KhuyenMaiAdmin
         public ActionResult Index(int? page)
         {
+            if (Session["LoaiTK"] == null || Convert.ToInt32(Session["LoaiTK"]) == 2)
+            {
+                return Redirect("/TaiKhoanAdmin/DangNhap");
+            }
             int pageNumber = (page ?? 1);
             int pageSize = 5;
             var khuyenMai = db.KhuyenMai.Include(k => k.TaiKhoan);

@@ -21,6 +21,5 @@ namespace WebsiteNhaHang.Models
     
         public virtual DatBan DatBan { get; set; }
         public virtual KieuDatBan KieuDatBan1 { get; set; }
-        public virtual MonAn MonAn { get; set; }
     }
 }

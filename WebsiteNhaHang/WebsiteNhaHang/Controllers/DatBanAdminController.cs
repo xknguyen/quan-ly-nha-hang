@@ -18,6 +18,10 @@ namespace WebsiteNhaHang.Controllers
         // GET: DatBanAdmin
         public ActionResult Index(int? page)
         {
+            if (Session["LoaiTK"] == null || Convert.ToInt32(Session["LoaiTK"]) == 2)
+            {
+                return Redirect("/TaiKhoanAdmin/DangNhap");
+            }
             int pageNumber = (page ?? 1);
             int pageSize = 5;
             var datBan = db.DatBan.Include(d => d.TaiKhoan);
@@ -62,7 +66,19 @@ namespace WebsiteNhaHang.Controllers
             {
                 return RedirectToAction("Index");
             }
-            DatBan datBan = db.DatBan.Find(id);
+            DatBan datBan = db.DatBan.Find(id);                        
+            while (db.DanhSachMonDatBan.FirstOrDefault(n => n.MaDatBan == id) != null)
+            {
+                DanhSachMonDatBan monDB = db.DanhSachMonDatBan.FirstOrDefault(n => n.MaDatBan == id);
+                db.DanhSachMonDatBan.Remove(monDB);
+                db.SaveChanges();
+            }
+            while (db.DanhSachDatCombo.FirstOrDefault(n => n.MaDatBan == id) != null)
+            {
+                DanhSachDatCombo comboDB = db.DanhSachDatCombo.FirstOrDefault(n => n.MaDatBan == id);
+                db.DanhSachDatCombo.Remove(comboDB);
+                db.SaveChanges();
+            }
             db.DatBan.Remove(datBan);
             db.SaveChanges();
             return RedirectToAction("Index");

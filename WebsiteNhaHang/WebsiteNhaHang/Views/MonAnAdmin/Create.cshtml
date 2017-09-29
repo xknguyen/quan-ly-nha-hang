@@ -8,9 +8,8 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>MonAn</h4>
-        <hr />
+    <div class="form-horizontal ml-2 mt-2">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.TenMon, htmlAttributes: new { @class = "control-label col-md-2" })

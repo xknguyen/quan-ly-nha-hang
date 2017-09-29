@@ -17,6 +17,10 @@ namespace TrangQuanLyNhaHang.Controllers
         // GET: ThongTinNhaHangs
         public ActionResult Index()
         {
+            if (Session["LoaiTK"] == null || Convert.ToInt32(Session["LoaiTK"]) == 2)
+            {
+                return Redirect("/TaiKhoanAdmin/DangNhap");
+            }
             var thongTinNhaHangs = db.ThongTinNhaHang;
             return View(thongTinNhaHangs.ToList());
         }

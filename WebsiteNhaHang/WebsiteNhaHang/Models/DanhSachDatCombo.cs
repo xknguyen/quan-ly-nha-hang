@@ -20,7 +20,6 @@ namespace WebsiteNhaHang.Models
         public Nullable<int> SoLuong { get; set; }
     
         public virtual DatBan DatBan { get; set; }
-        public virtual GoiCombo GoiCombo { get; set; }
         public virtual KieuDatBan KieuDatBan1 { get; set; }
     }
 }

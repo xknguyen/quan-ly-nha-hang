@@ -151,7 +151,7 @@ namespace WebsiteNhaHang.Controllers
             string diaChi = db.TaiKhoan.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).DiaChi;
             string nguoiDang = db.TaiKhoan.FirstOrDefault(n => n.MaTaiKhoan == datBan.MaKhachHang).TenNguoiDung;
             StringBuilder Body = new StringBuilder();
-            Body.Append("<p>Cảm ơn quý khách" + nguoiDang+ " đã sử dụng dịch vụ đặt hàng online của nhà hàng " +nhaHang+"</p>");
+            Body.Append("<p>Cảm ơn quý khách " + nguoiDang+ " đã sử dụng dịch vụ đặt hàng online của nhà hàng " +nhaHang+"</p>");
             Body.Append("<table>");
             Body.Append("<tr><td colspan='2'><h4>Thông tin hóa đơn:</h4></td></tr>");
             Body.Append("<tr><td>Người đặt:</td><td>"+email+"</td></tr>");

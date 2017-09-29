@@ -20,6 +20,14 @@ namespace WebsiteNhaHang.Controllers
         // GET: QuanLyMonAns
         public ActionResult Index(int? page)
         {
+            if (Session["LoaiTK"] == null || Convert.ToInt32(Session["LoaiTK"]) == 2)
+            {
+                return Redirect("/TaiKhoanAdmin/DangNhap");
+            }
+            if (Session["LoaiTK"] == null || Convert.ToInt32(Session["LoaiTK"]) == 2)
+            {
+                return Redirect("/TaiKhoanAdmin/DangNhap");
+            }
             int pageNumber = (page ?? 1);
             int pageSize = 5;
             var monAns = db.MonAn;
@@ -145,6 +153,11 @@ namespace WebsiteNhaHang.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             MonAn monAn = db.MonAn.Find(id);
+            while (db.MonAn.Find(id).GoiCombo!=null)
+            {
+                db.MonAn.Find(id).GoiCombo=null;
+                db.SaveChanges();
+            }
             db.MonAn.Remove(monAn);
             db.SaveChanges();
             return RedirectToAction("Index");

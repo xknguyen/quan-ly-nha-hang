@@ -9,7 +9,7 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal ml-2 mt-3">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.TenSuKien, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -72,6 +72,6 @@
     </div>
 }
 
-<div>
+<div class="ml-3">
     @Html.ActionLink("Back to List", "Index")
 </div>
